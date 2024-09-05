@@ -1,0 +1,124 @@
+@import "../../responsive.scss";
+
+.homePage {
+  display: flex;
+  height: 680px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  color: #DCDCDC;
+  background-color: #141414;
+  margin-top: 80px;
+  
+
+  @include md {
+    flex-direction: column;
+    //padding-top: 80px; // Ajuste para telas menores
+  }
+
+  .imgContainer {
+    flex: 2;
+    //background-color: #fcf5f3;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 99px;
+
+    @include md {
+      display: none;
+    }
+
+    img {
+      width: 115%;
+      position: absolute;
+      right: 0;
+      border-radius: 25px;
+      height: 500px;
+      max-width: 380px;
+
+      @include lg {
+        width: 100%;
+      }
+    }
+  }
+
+  .textContainer {
+    flex: 3;
+
+    .wrapper {
+      padding-right: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px ;
+      height: 100%;
+
+      @include lg {
+        padding-right: 50px; // Ajusta o padding lateral em telas médias
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      @include md {
+        padding: 0; // Remove padding lateral em telas menores
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      @include sm {
+        justify-content: flex-start; // Ajuste de alinhamento em dispositivos pequenos
+        padding-top: 80px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .title {
+        font-size: 50px;
+
+        @include lg {
+          font-size: 48px; // Ajusta o tamanho do título em telas médias
+        }
+
+        @include md {
+          font-size: 40px; // Ajusta o tamanho do título em telas pequenas
+        }
+
+        @include sm {
+          font-size: 32px; // Reduz ainda mais o tamanho do título em dispositivos pequenos
+        }
+      }
+
+      .buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+
+        .primary-button,
+        .secondary-button {
+          padding: 0.75rem 1.5rem;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+        }
+
+        .primary-button {
+          background-color: #ab2df4;
+          color: #fff;
+        }
+
+        .secondary-button {
+          background-color: #0c0c0c;
+          color: #fff;
+          border: #fff solid 1px;
+        }
+
+        .primary-button:hover,
+        .secondary-button:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import "../../responsive.scss";
+
+.layout {
+  height: 100vh;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  //padding-left: 20px;
+  //padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+
+  @include lg {
+    max-width: none;
+  }
+
+  @include md {
+    width: none;
+  }
+
+  @include sm {
+    max-width: none;
+  }
+
+  .content {
+    height: calc(100vh - 100px);
+  }
+}
+
+nav {
+  position: fixed; /* Para fixar o nav no topo da tela */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #110EC1;
+  z-index: 1000; /* Garante que o nav fique acima do conteúdo */
+  margin: 0; /* Remove qualquer margem */
+  padding: 0; /* Remove qualquer padding */
+}
