@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import Palestrantes from "../palestrantes/palestrantes";
+import Minicourses from "../minicourses/minicourses";
+import Speakers from "../speakers/speakers";
 import "./homePage.scss";
 
 function HomePage() {
@@ -26,7 +27,10 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <Palestrantes/>
+        <Speakers/>
+        <div className="downPage">
+          <Minicourses/>
+        </div>
       </div>
   );
 }

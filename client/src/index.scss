@@ -11,5 +11,11 @@ a {
 
 body{
   font-family: "Lato", sans-serif;
-  overflow: hidden;
+  overflow: auto;
+  
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari e Edge */
+  scrollbar-width: none;
 }
