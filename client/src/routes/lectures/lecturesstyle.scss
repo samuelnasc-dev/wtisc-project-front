@@ -1,0 +1,54 @@
+@import "../../responsive.scss";
+
+.lectures {
+  background-color: #ffffff;
+  padding: 60px 0;
+
+  .lectures-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 40px;
+
+    @include md {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .infor {
+      .section-title {
+        font-size: 42px;
+        color: #6b1ac1;
+        margin-bottom: 20px;
+      }
+
+      .section-subtitle {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 30px;
+      }
+
+      .button-container {
+        .btn {
+          padding: 12px 25px;
+          background-color: #6b1ac1;
+          color: #fff;
+          border-radius: 25px;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #3b1464;
+          }
+        }
+      }
+    }
+
+    .image-container {
+      img {
+        max-width: 100%;
+        border-radius: 5px;
+      }
+    }
+  }
+}
