@@ -1,8 +1,8 @@
 @import "../../responsive.scss";
 
 nav {
-  width: 100%; /* Adicione esta linha */
-  max-width: 100%; /* Certifique-se de que não há limitação de largura */
+  width: 100%;
+  max-width: 100%;
   height: 100px;
   display: flex;
   justify-content: space-between;
@@ -11,13 +11,11 @@ nav {
   color: #000000;
   //padding: 0 120px 0 120px;
   
-
   a {
     transition: all 0.4s ease;
 
     @include sm {
       display: none;
-      
     }
 
     &:hover {
@@ -54,13 +52,14 @@ nav {
       }
     }
   }
+
   .right {
     flex: 2;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     height: 100%;
-    padding-right: 257px;  
+    padding-right: 257px;
 
     @include md {
       background-color: transparent;
@@ -71,24 +70,29 @@ nav {
       margin: 20px;
     }
 
-    .user{
+    .user {
       display: flex;
       align-items: center;
       font-weight: bold;
-      span{
-        @include sm{
-          display: none;
-        }
+      gap: 10px; // Adiciona um espaço entre o nome do usuário e o link do perfil
+
+      .username {
+        color: #000000;
+        font-size: 16px; // Ajuste o tamanho da fonte conforme necessário
+        font-weight: normal; // Ajuste o peso da fonte conforme necessário
       }
 
-      .profile{
+      .profile {
         padding: 12px 24px;
         background-color: #fece51;
         cursor: pointer;
         border: none;
         position: relative;
-        
-        .notification{
+        display: flex;
+        align-items: center;
+        gap: 5px; // Espaçamento entre o texto e a notificação
+
+        .notification {
           position: absolute;
           top: -8px;
           right: -8px;
@@ -100,8 +104,8 @@ nav {
           display: flex;
           align-items: center;
           justify-content: center;
+          font-size: 12px; // Ajuste o tamanho da fonte conforme necessário
         }
-
       }
     }
 

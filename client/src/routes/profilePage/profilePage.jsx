@@ -35,7 +35,7 @@ function ProfilePage() {
               <img src={currentUser.avatar || "noavatar.jpg"} alt="" />
             </span>
             <span>
-              Username: <b>{currentUser.username}</b>
+              Username: <b>{currentUser.name}</b>
             </span>
             <span>
               E-mail: <b>{currentUser.email}</b>

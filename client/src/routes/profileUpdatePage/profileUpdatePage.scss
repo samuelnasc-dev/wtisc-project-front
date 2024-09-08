@@ -1,4 +1,5 @@
 .profileUpdatePage {
+  margin-top: 80px;
   height: 100%;
   display: flex;
 
@@ -17,8 +18,6 @@
         flex-direction: column;
         gap: 5px;
 
-        label {
-        }
 
         input {
           padding: 20px;
