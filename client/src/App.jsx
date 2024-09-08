@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Footer from "./components/footer/footer";
 import profilePageLoader from "./lib/loaders";
 import HomePage from "./routes/homePage/homePage";
 import { Layout, RequireAuth } from "./routes/layout/layout";
@@ -26,10 +25,6 @@ function App() {
         {
           path: "/register",
           element: <Register />,
-        },
-        {
-          path:"/",
-          element: <Footer />
         }
       ],
     },
