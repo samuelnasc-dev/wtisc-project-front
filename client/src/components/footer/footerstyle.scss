@@ -1,7 +1,7 @@
 @import "../../responsive.scss";
 
 .footer {
-  background-color: #000000;
+  background-color: #2A0049;
   color: #ffffff;
   padding: 50px 0;
 
@@ -55,16 +55,23 @@
 
       .social-links {
         display: flex;
-        gap: 20px;
+        gap: 2px;
+        list-style-type: none;
+        justify-content: center;
 
-        a {
-          color: #ffffff;
-          font-size: 24px;
+        ol {
+          list-style-type: none;
+        }
+
+        ol > li > img{
           transition: color 0.3s;
+          width: 30px;
+          gap: 20px;
 
           &:hover {
             color: #6b1ac1;
           }
+
         }
       }
     }

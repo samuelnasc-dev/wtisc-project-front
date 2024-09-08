@@ -1,7 +1,9 @@
 import { useContext } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import Footer from "../../components/footer/footer";
 import Navbar from "../../components/navbar/Navbar";
 import { AuthContext } from "../../context/AuthContext";
+import HomePage from "../homePage/homePage";
 import "./layout.scss";
 
 function Layout() {
@@ -10,8 +12,11 @@ function Layout() {
       <div className="navbar">
         <Navbar />
       </div>
-      <div className="content">
-        <Outlet />
+      <div className="main">
+        <HomePage />
+      </div>
+      <div className="footer">
+        <Footer />
       </div>
     </div>
   );
@@ -27,9 +32,12 @@ function RequireAuth() {
         <div className="navbar">
           <Navbar />
         </div>
-        <div className="content">
-          <Outlet />
+        <div className="main">
+          <HomePage />
         </div>
+        <div className="footer">
+        <Footer />
+      </div>
       </div>
     );
   }

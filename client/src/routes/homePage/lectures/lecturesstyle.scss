@@ -1,0 +1,73 @@
+@import "../../../responsive.scss";
+
+.lectures {
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+
+  .lectures-content {
+    display: flex;
+    background-color: #e5dff2;
+    padding: 55px 60px;
+    max-width: 940px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 5px 5px 5px 80px;
+    flex-direction: row;
+    gap: 35px;
+
+    @include md {
+      flex-direction: column;
+      text-align: center;
+      margin: 20px 20px;
+    }
+
+    .infor {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+
+      .section-title {
+        font-size: 42px;
+        color: #6b1ac1;
+        margin-bottom: 20px;
+      }
+
+      .section-subtitle {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 30px;
+      }
+
+      .button-container {
+        .btn {
+          padding: 12px 25px;
+          background-color: #6b1ac1;
+          color: #fff;
+          border-radius: 25px;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #3b1464;
+          }
+        }
+      }
+    }
+
+    .image-container {
+      img {
+        width: 320px;
+        height: 283px;
+        max-width: 100%;
+        border-radius: 5px;
+
+        @include md {
+          display: none;
+        }
+      }
+    }
+  }
+}

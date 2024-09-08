@@ -1,0 +1,39 @@
+@import "../../../responsive.scss";
+
+
+.sponsors {
+  background-color: #000000;
+  padding: 100px 0;
+
+  .sponsors-content {
+    text-align: center;
+
+    .section-title {
+      font-size: 30px;
+      color: #e5dff2;
+      margin-bottom: 60px;
+    }
+
+    .logos-container {
+      display: flex;
+      justify-content: center;
+      //flex-wrap: wrap;
+      gap: 100px;
+
+      @include sm {
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+        gap: 43px;
+      }
+
+      img {
+        max-width: 150px;
+        @include sm {
+          max-width: 150px;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

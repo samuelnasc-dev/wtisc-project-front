@@ -1,14 +1,12 @@
 import { useContext, useState } from "react";
-import "./profileUpdatePage.scss";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
-import { useNavigate } from "react-router-dom";
-import UploadWidget from "../../components/uploadWidget/UploadWidget";
+import "./profileUpdatePage.scss";
 
 function ProfileUpdatePage() {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState([]);
 
   const navigate = useNavigate();
 
@@ -22,8 +20,7 @@ function ProfileUpdatePage() {
       const res = await apiRequest.put(`/users/${currentUser.id}`, {
         username,
         email,
-        password,
-        avatar:avatar[0]
+        password
       });
       updateUser(res.data);
       navigate("/profile");
@@ -61,21 +58,11 @@ function ProfileUpdatePage() {
             <input id="password" name="password" type="password" />
           </div>
           <button>Update</button>
-          {error && <span>error</span>}
+          {error && <span>{error}</span>}
         </form>
       </div>
       <div className="sideContainer">
-        <img src={avatar[0] || currentUser.avatar || "/noavatar.jpg"} alt="" className="avatar" />
-        <UploadWidget
-          uwConfig={{
-            cloudName: "lamadev",
-            uploadPreset: "estate",
-            multiple: false,
-            maxImageFileSize: 2000000,
-            folder: "avatars",
-          }}
-          setState={setAvatar}
-        />
+        <img src={currentUser.avatar || "/noavatar.jpg"} alt="" className="avatar" />
       </div>
     </div>
   );

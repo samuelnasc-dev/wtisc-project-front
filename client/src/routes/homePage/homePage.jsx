@@ -1,12 +1,11 @@
 import { useContext } from "react";
-import Footer from "../../components/footer/footer";
 import { AuthContext } from "../../context/AuthContext";
-import Lectures from "../lectures/lectures";
-import Minicourses from "../minicourses/minicourses";
-import Products from "../products/products";
-import Speakers from "../speakers/speakers";
-import Sponsors from "../sponsors/sponsors";
 import "./homePage.scss";
+import Lectures from "./lectures/lectures";
+import Minicourses from "./minicourses/minicourses";
+import Products from "./products/products";
+import Speakers from "./speakers/speakers";
+import Sponsors from "./sponsors/sponsors";
 
 function HomePage() {
   const { currentUser } = useContext(AuthContext);
@@ -31,16 +30,12 @@ function HomePage() {
             </div>
           </div>
         </div>
-        <Speakers/>
-        <div className="downPage">
+        {/* main */}
+          <Speakers/>
           <Minicourses/>
-          <Sponsors />
-          <Lectures />
-          <Products />
-        </div>
-        <div>
-          <Footer />
-        </div>
+          <Sponsors/>
+          <Lectures/>
+          <Products/>  
       </div>
   );
 }
