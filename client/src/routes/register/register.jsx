@@ -17,8 +17,8 @@ function Register() {
     const formData = new FormData(e.target);
 
     const name = formData.get("name");
-    const surname = formData.get("name");
-    const cpf = formData.get("name");
+    const surname = formData.get("surname");
+    const cpf = formData.get("cpf");
     const email = formData.get("email");
     const password = formData.get("password");
 

@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
-import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
+import apiRequest from "../../lib/apiRequest";
+import "./login.scss";
 
 function Login() {
   const [error, setError] = useState("");
@@ -18,12 +18,12 @@ function Login() {
     setError("");
     const formData = new FormData(e.target);
 
-    const username = formData.get("username");
+    const cpf = formData.get("cpf");
     const password = formData.get("password");
 
     try {
       const res = await apiRequest.post("/auth/login", {
-        username,
+        cpf,
         password,
       });
 
@@ -42,18 +42,18 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <h1>Welcome back</h1>
           <input
-            name="username"
+            name="cpf"
             required
             minLength={3}
             maxLength={20}
             type="text"
-            placeholder="Username"
+            placeholder="CPF"
           />
           <input
             name="password"
             type="password"
             required
-            placeholder="Password"
+            placeholder="Senha"
           />
           <button disabled={isLoading}>Login</button>
           {error && <span>{error}</span>}
