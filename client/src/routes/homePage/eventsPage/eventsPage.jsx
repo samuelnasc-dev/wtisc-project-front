@@ -6,26 +6,23 @@ function EventsPage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // Função para buscar os dados das palestras
+    // Função para buscar os dados das palestras ou minicursos com base na aba ativa
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8800/lectures');
-        // if (!response.ok) {
-        //   const errorText = await response.text();
-        //   throw new Error(`Network response was not ok: ${response.status} ${response.statusText}. Response: ${errorText}`);
-        // }
+        const endpoint = activeTab === "palestras" 
+          ? 'http://localhost:8800/lectures'
+          : 'http://localhost:8800/minicourses';
+
+        const response = await fetch(endpoint);
         const result = await response.json();
         setData(result);
       } catch (error) {
-        console.error('Erro ao buscar palestras:', error.message);
+        console.error(`Erro ao buscar ${activeTab}:`, error.message);
       }
     };
 
     fetchData();
-  }, []);
-
-  // Filtra os dados com base na aba ativa
-  const filteredData = data.filter(event => event.category === activeTab);
+  }, [activeTab]); // Atualiza a busca quando a aba ativa mudar
 
   return (
     <div className="eventos-container">
@@ -48,11 +45,11 @@ function EventsPage() {
       </div>
 
       <div className="carousel">
-        {filteredData.length > 0 ? (
-          filteredData.map((event) => (
+        {data.length > 0 ? (
+          data.map((event) => (
             <div key={event.id} className="event-card">
               <h2>{event.title}</h2>
-              <p>Por: {event.speaker}</p>
+              <p>Por: {event.speaker || event.instructor}</p>
               <p>{event.description}</p>
               <p>{event.location}</p>
               <button>Ver Mais</button>

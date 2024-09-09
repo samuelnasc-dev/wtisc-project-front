@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./lecturesstyle.scss";
 
 function Lectures() {
@@ -10,7 +11,7 @@ function Lectures() {
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </p>
             <div className="button-container">
-              <a href="#vermais" className="btn">Ver mais</a>
+              <Link to="./eventsPage" className="btn">Ver mais</Link>
             </div>
           </div>
           <div className="image-container">
