@@ -5,6 +5,11 @@
     padding: 2rem;
     background-color: #0d0d0d;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 150px;
+    margin-top: 40px;
   
     h1 {
       font-size: 2.5rem;
@@ -51,6 +56,9 @@
         border-radius: 8px;
         padding: 1.5rem;
         text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         transition: transform 0.3s ease;
   
         &:hover {
@@ -67,6 +75,12 @@
           font-size: 1rem;
           color: #ccc;
           margin-bottom: 0.5rem;
+        }
+  
+        .buttonCard {
+          display: flex;
+          justify-content: space-between; // Alinha os botões
+          margin-top: auto; // Empurra os botões para baixo
         }
   
         button {

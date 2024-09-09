@@ -28,9 +28,9 @@ function App() {
           element: <Register />,
         },
         {
-          path: "/eventsPage",
+          path: "/eventsPage/:type",
           element: <EventsPage />,
-          
+
         }
       ],
     },

@@ -11,7 +11,7 @@ function Lectures() {
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </p>
             <div className="button-container">
-              <Link to="./eventsPage" className="btn">Ver mais</Link>
+              <Link to="./eventsPage/lectures" className="btn">Ver mais</Link>
             </div>
           </div>
           <div className="image-container">

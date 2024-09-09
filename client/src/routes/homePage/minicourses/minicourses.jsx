@@ -8,7 +8,7 @@ function Minicourses() {
             <div className="infor">
                 <h2 className="section-title">Minicursos</h2>
                 <div className="button-container">
-                  <Link to="./eventsPage" className="btn">Ver mais</Link>
+                  <Link to="./eventsPage/minicourses" className="btn">Ver mais</Link>
                 </div>
             </div>
             <p className="section-subtitle">
