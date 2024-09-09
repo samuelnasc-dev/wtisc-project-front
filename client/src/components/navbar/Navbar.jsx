@@ -14,7 +14,7 @@ function Navbar() {
 
   useEffect(() => {
     if (currentUser) {
-      console.log('currentUser:', currentUser); // Verifique a estrutura do currentUser
+      console.log('currentUser:', currentUser.user.name); // Verifique a estrutura do currentUser
       fetch();
     }
   }, [currentUser, fetch]);
@@ -33,14 +33,9 @@ function Navbar() {
       <div className="right">
         {currentUser ? (
           <div className="user">
-            {currentUser.name ? (
-              <span className="username">{currentUser.name}</span>
-            ) : (
-              <span className="username">Nome não disponível</span>
-            )}
             <Link to="/profile" className="profile">
               {/* {number > 0 && <div className="notification">{number}</div>} */}
-              <span>Profile</span>
+              <span>{currentUser.user.name}</span>
             </Link>
           </div>
         ) : (

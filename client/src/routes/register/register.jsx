@@ -1,8 +1,7 @@
-import "./register.scss";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
+import "./register.scss";
 
 function Register() {
   const [error, setError] = useState("");
@@ -40,22 +39,30 @@ function Register() {
   };
   return (
     <div className="registerPage">
+      <div className="imgContainer">
+        <img src="/logo-wtisc-2.png" alt="" />
+      </div>
+      <div className="imgTravessao">
+        <img src="/travessao.png" alt="" />
+      </div>
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
-          <h1>Create an Account</h1>
-          <input name="name" type="text" placeholder="Username" />
-          <input name="surname" type="text" placeholder="Surname" />
-          <input name="cpf" type="text" placeholder="CPF" />
-          <input name="email" type="text" placeholder="Email" />
-          <input name="password" type="password" placeholder="Password" />
-          <button disabled={isLoading}>Register</button>
+          <h1>Cadastre-se</h1>
+          <div className="inputNomeSobrenome">
+            <input name="name" type="text" placeholder="Nome" />
+            <input name="surname" type="text" placeholder="Sobrenome" />
+          </div>
+          <input className="inputDemaisDados" name="cpf" type="text" placeholder="CPF" />
+          <input className="inputDemaisDados" name="email" type="text" placeholder="Email" />
+          <input className="inputDemaisDados" name="password" type="password" placeholder="Senha" />
+          <button disabled={isLoading}>Cadastre-se</button>
           {error && <span>{error}</span>}
-          <Link to="/login">Do you have an account?</Link>
+          <div>
+            <Link to="/login">Já tem cadastro?</Link>
+          </div>
         </form>
       </div>
-      <div className="imgContainer">
-        <img src="/bg.png" alt="" />
-      </div>
+      
     </div>
   );
 }

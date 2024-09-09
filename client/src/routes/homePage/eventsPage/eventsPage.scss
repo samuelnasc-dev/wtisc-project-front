@@ -1,0 +1,106 @@
+@import "../../../responsive.scss";
+
+.eventos-container {
+    text-align: center;
+    padding: 2rem;
+    background-color: #0d0d0d;
+    color: #fff;
+  
+    h1 {
+      font-size: 2.5rem;
+      color: #fff;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+  
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+  
+      button {
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: color 0.3s;
+  
+        &:hover {
+          color: #a133eb;
+        }
+  
+        &.active {
+          color: #a133eb;
+          border-bottom: 2px solid #a133eb;
+        }
+      }
+    }
+  
+    .carousel {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+  
+      .event-card {
+        background-color: #3b3b3b;
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: left;
+        transition: transform 0.3s ease;
+  
+        &:hover {
+          transform: scale(1.05);
+        }
+  
+        h2 {
+          font-size: 1.5rem;
+          color: #fff;
+          margin-bottom: 1rem;
+        }
+  
+        p {
+          font-size: 1rem;
+          color: #ccc;
+          margin-bottom: 0.5rem;
+        }
+  
+        button {
+          background-color: #a133eb;
+          border: none;
+          padding: 0.5rem 1rem;
+          color: #fff;
+          cursor: pointer;
+          border-radius: 4px;
+  
+          &:hover {
+            background-color: #7e25b5;
+          }
+        }
+      }
+    }
+  
+    // Responsividade
+    @include lg {
+      .carousel {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  
+    @include md {
+      .carousel {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  
+    @include sm {
+      .carousel {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+  

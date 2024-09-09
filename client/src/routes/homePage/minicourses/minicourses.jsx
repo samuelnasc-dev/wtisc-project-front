@@ -1,4 +1,5 @@
 import "./minicoursestyle.scss";
+import { Link } from "react-router-dom";
 
 function Minicourses() {
     return (
@@ -7,7 +8,7 @@ function Minicourses() {
             <div className="infor">
                 <h2 className="section-title">Minicursos</h2>
                 <div className="button-container">
-                    <a href="#vermais" className="btn">Ver mais</a>
+                  <Link to="./eventsPage" className="btn">Ver mais</Link>
                 </div>
             </div>
             <p className="section-subtitle">

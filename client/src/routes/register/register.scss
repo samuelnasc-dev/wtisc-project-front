@@ -1,32 +1,63 @@
+@import "../../responsive.scss";
+
 .registerPage {
-  height: 100%;
+  height: 940px;
   display: flex;
+  background-color: black;
+  align-items: center;
+  justify-content: space-around;
+  padding: 240px;
 
   .formContainer {
-    flex: 3;
-    height: 100%;
+    height: 501px;
     display: flex;
     align-items: center;
     justify-content: center;
 
     form {
+      border-radius: 25px;
+      background-color: #F0F0F0;
       display: flex;
       flex-direction: column;
       gap: 20px;
+      padding: 89px;
 
-      input {
+      .inputNomeSobrenome {
+        display: flex;
+        justify-content: space-between;
+      }
+  
+      .inputNomeSobrenome > input {
         padding: 20px;
-        border: 1px solid gray;
+        border: none;
         border-radius: 5px;
+        background-color: #DCDCDC;
+        width: 47%;
+        height: 37px;
+
+        @include sm {
+          width: 100%; /* Em telas menores, cada input ocupa a largura total */
+        }
+      }
+
+      .inputDemaisDados {
+        padding: 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #DCDCDC;
+        width: 100%;
+        height: 37px;
       }
 
       button {
-        padding: 20px;
         border-radius: 5px;
         border: none;
-        background-color: teal;
+        background-color: #7400C9;
         color: white;
         font-weight: bold;
+        width: 131px;
+        height: 31px;
+        text-align: center;
         cursor: pointer;
 
         &:disabled {
@@ -48,14 +79,64 @@
     }
   }
 
-  .imgContainer {
-    flex: 2;
-    background-color: #fcf5f3;
+  .imgTravessao {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .imgContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     img {
+      height: 85px;
+      width: 383px;
+
+      @include sm {
+        height: 60px;
+        width: 280px; /* Ajusta o tamanho da imagem em telas pequenas */
+      }
+    }
+  }
+
+  /* Media queries */
+  @include sm {
+    flex-direction: column;
+    padding: 50px;
+    height: auto;
+
+    .formContainer {
       width: 100%;
+
+      form {
+        padding: 40px; /* Reduz o padding para telas pequenas */
+      }
+    }
+
+    .imgContainer {
+      margin-bottom: 20px; /* Adiciona espaço entre a imagem e o formulário */
+    }
+  }
+
+  @include md {
+    padding: 150px; /* Ajusta o padding para telas médias */
+
+    .formContainer {
+      form {
+        padding: 70px; /* Ajusta o padding do formulário para telas médias */
+      }
+    }
+  }
+
+  @include lg {
+    padding: 200px; /* Ajusta o padding para telas grandes */
+
+    .formContainer {
+      form {
+        padding: 80px; /* Ajusta o padding para telas grandes */
+      }
     }
   }
 }

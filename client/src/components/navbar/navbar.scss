@@ -77,14 +77,16 @@ nav {
       gap: 10px; // Adiciona um espaço entre o nome do usuário e o link do perfil
 
       .username {
-        color: #000000;
-        font-size: 16px; // Ajuste o tamanho da fonte conforme necessário
+        color: #ffffff;
+        font-size: 20px; // Ajuste o tamanho da fonte conforme necessário
         font-weight: normal; // Ajuste o peso da fonte conforme necessário
       }
 
       .profile {
+        border-radius: 8px;
+        color: #ffffff;
         padding: 12px 24px;
-        background-color: #fece51;
+        background-color: #7400C9;
         cursor: pointer;
         border: none;
         position: relative;
