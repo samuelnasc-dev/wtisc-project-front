@@ -7,6 +7,8 @@ import ProfilePage from "./routes/profilePage/profilePage";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import Register from "./routes/register/register";
 import EventsPage from "./routes/homePage/eventsPage/eventsPage";
+import LecturePage from "./routes/leacturePage/leacturePage";
+import MinicoursePage from "./routes/minicoursePage/MinicoursePage";
 
 
 function App() {
@@ -30,7 +32,14 @@ function App() {
         {
           path: "/eventsPage/:type",
           element: <EventsPage />,
-
+        },
+        {
+          path:"/lecturePage/:id",
+          element: <LecturePage />
+        },
+        {
+          path:"/minicoursePage/:id",
+          element: <MinicoursePage />,
         }
       ],
     },

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Importe useNavigate
 import "./eventsPage.scss";
 
 function EventsPage() {
   const { type } = useParams(); // Captura o parâmetro de rota
   const [activeTab, setActiveTab] = useState(type === "minicourses" ? "minicursos" : "palestras"); // Define o tab ativo com base no tipo de evento
   const [data, setData] = useState([]);
+  const navigate = useNavigate(); // Hook de navegação
 
   useEffect(() => {
     // Função para buscar os dados das palestras ou minicursos com base na aba ativa
@@ -30,6 +31,17 @@ function EventsPage() {
     // Atualiza o tab ativo ao mudar o parâmetro da rota
     setActiveTab(type === "minicourses" ? "minicursos" : "palestras");
   }, [type]);
+
+  const handleViewMore = (eventId, isMinicourse) => {
+    if (isMinicourse && eventId) {
+      navigate(`/minicoursePage/${eventId}`);
+    } else if (eventId) {
+      navigate(`/lecturePage/${eventId}`);
+    } else {
+      console.error("ID do evento não encontrado.");
+    }
+  };
+  
 
   return (
     <div className="eventos-container">
@@ -63,8 +75,9 @@ function EventsPage() {
                 <p>{event.description}</p>
                 <p>{event.location}</p>
                 <div className='buttonCard'>
-                    <button>Ver Mais</button>
-                    <button>Inscreva-se</button>
+                    <button onClick={() => handleViewMore(event.lectureId || event.minicourseId, !!event.minicourseId)}>
+                      Ver Mais
+                    </button>
                 </div>
             </div>
             ))
