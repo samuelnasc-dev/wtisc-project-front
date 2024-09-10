@@ -1,38 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./InscricoesStyle.scss";
 
 const Inscricoes = () => {
   const [activeTab, setActiveTab] = useState("palestras");
+  const [inscricoesPalestras, setInscricoesPalestras] = useState([]);
+  const [inscricoesMinicursos, setInscricoesMinicursos] = useState([]);
 
-  const inscricoesPalestras = [
-    {
-      id: 1,
-      title: "Estudo das fontes de cálcio dos alimentos lácteos - Fulano de Tal",
-    },
-    {
-      id: 2,
-      title: "Estudo das fontes de cálcio dos alimentos lácteos - Fulano de Tal",
-    },
-  ];
+  useEffect(() => {
+    const fetchInscricoes = async () => {
+      try {
+        const response = await axios.get("http://localhost:8800/users/subscriptions", {
+          withCredentials: true, // Enviar cookies de autenticação
+        });
 
-  const inscricoesMinicursos = [
-    {
-      id: 1,
-      title: "Introdução à Nutrição - Fulano de Tal",
-    },
-    {
-      id: 2,
-      title: "Avanços na Ciência dos Alimentos - Fulano de Tal",
-    },
-  ];
+        setInscricoesPalestras(response.data.userLectureEnrollment || []);
+        setInscricoesMinicursos(response.data.userMinicourseEnrollment || []);
+      } catch (error) {
+        console.error("Erro ao buscar inscrições:", error);
+      }
+    };
 
-  const renderInscricoes = (inscricoes) => {
+    fetchInscricoes();
+  }, []);
+
+  // Função para remover inscrição
+  const handleRemoveMinicurso = async (enrollmentId) => {
+    try {
+      await axios.delete(`http://localhost:8800/subscriptions/minicourses/${enrollmentId}`, {
+        withCredentials: true, // Enviar cookies de autenticação
+      });
+
+      // Atualiza a lista de minicursos após a exclusão
+      setInscricoesMinicursos((prevInscricoes) =>
+        prevInscricoes.filter((inscricao) => inscricao.enrollmentId !== enrollmentId)
+      );
+    } catch (error) {
+      console.error("Erro ao remover inscrição:", error);
+    }
+  };
+
+  const renderInscricoes = (inscricoes, tipo) => {
+    if (!inscricoes || inscricoes.length === 0) {
+      return <p>Você ainda não está inscrito em nenhum {tipo}.</p>;
+    }
+
     return inscricoes.map((inscricao) => (
-      <div key={inscricao.id} className="inscricao-card">
-        <span>{inscricao.title}</span>
-        <button>
-          <img src="/lixeira.png" alt="Remover" />
-        </button>
+      <div key={inscricao.enrollmentId} className="inscricao-card">
+        <span>{inscricao[tipo]?.title || "Título não disponível"}</span>
+        {/* Botão para remover inscrição */}
+        {tipo === "minicourse" && (
+          <button onClick={() => handleRemoveMinicurso(inscricao.enrollmentId)}>
+            <img src="/lixeira.png" alt="Remover" />
+          </button>
+        )}
       </div>
     ));
   };
@@ -58,8 +79,8 @@ const Inscricoes = () => {
           </div>
           <div className="inscricoes-list">
             {activeTab === "palestras"
-              ? renderInscricoes(inscricoesPalestras)
-              : renderInscricoes(inscricoesMinicursos)}
+              ? renderInscricoes(inscricoesPalestras, 'lecture')
+              : renderInscricoes(inscricoesMinicursos, 'minicourse')}
           </div>
         </div>
         <div>

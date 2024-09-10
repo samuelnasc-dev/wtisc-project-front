@@ -4,7 +4,6 @@ import './MinicourseDetails.scss';
 
 const MinicourseDetails = ({ title, description, instructor, date, enrolled, capacity, minicourseId }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log('Minicourse ID:', minicourseId);
 
   useEffect(() => {
     // Verificar se o usuário está logado
@@ -34,19 +33,19 @@ const MinicourseDetails = ({ title, description, instructor, date, enrolled, cap
         }
 
         // Enviar a requisição POST para o backend
-        const response = await axios.post(`http://localhost:8800/subscriptions/minicourses/`, { minicourseId });
-        
+        const response = await axios.post(`http://localhost:8800/subscriptions/minicourses/`, { minicourseId }, { withCredentials: true });
+
         // Verificar a resposta
-        if (response.status === 200) {
+        if (response.status === 201) { // Status 201 significa que o recurso foi criado com sucesso
             alert('Inscrição realizada com sucesso!');
         } else {
             throw new Error('Falha na inscrição.');
         }
     } catch (error) {
         console.error('Erro ao realizar inscrição:', error); // Log do erro para depuração
+        alert('Erro ao realizar inscrição. Tente novamente mais tarde.');
     }
-};
-
+  };
 
   return (
     <div className="minicourse-details-container">
