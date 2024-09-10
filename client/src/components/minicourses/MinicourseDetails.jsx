@@ -1,11 +1,57 @@
-import React from 'react';
-import './MinicourseDetails.scss'; // Arquivo de estilos para minicursos
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './MinicourseDetails.scss';
 
-const MinicourseDetails = ({ title, description, instructor, date, enrolled, capacity, handleEnroll }) => {
+const MinicourseDetails = ({ title, description, instructor, date, enrolled, capacity, minicourseId }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log('Minicourse ID:', minicourseId);
+
+  useEffect(() => {
+    // Verificar se o usuário está logado
+    const checkAuth = async () => {
+      try {
+        await axios.get('/api/auth/check'); // Verifica a autenticação do usuário
+        setIsLoggedIn(true);
+      } catch (error) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  const handleEnroll = async () => {
+    if (!isLoggedIn) {
+        // Redirecionar para a página de login se o usuário não estiver logado
+        window.location.href = '/login';
+        return;
+    }
+
+    try {
+        // Verifique se minicourseId está definido
+        if (!minicourseId) {
+            throw new Error('ID do minicurso não definido.');
+        }
+
+        // Enviar a requisição POST para o backend
+        const response = await axios.post(`http://localhost:8800/subscriptions/minicourses/`, { minicourseId });
+        
+        // Verificar a resposta
+        if (response.status === 200) {
+            alert('Inscrição realizada com sucesso!');
+        } else {
+            throw new Error('Falha na inscrição.');
+        }
+    } catch (error) {
+        console.error('Erro ao realizar inscrição:', error); // Log do erro para depuração
+    }
+};
+
+
   return (
     <div className="minicourse-details-container">
-
       <div className="minicourse-content">
+        {/* Conteúdo do minicurso */}
         <div>
           <div className="minicourse-header">
             <h1>{title}</h1>
@@ -39,12 +85,11 @@ const MinicourseDetails = ({ title, description, instructor, date, enrolled, cap
           <div className="enrollment-details">
             <p>Ingresso para minicurso – {title}</p>
             <p><strong>Inscrições até:</strong> 17/10/2023</p>
-            <button onClick={handleEnroll} disabled={enrolled >= capacity} className="enroll-button">
-              Inscrever-se
+            <button onClick={handleEnroll} disabled={enrolled >= capacity || !isLoggedIn} className="enroll-button">
+              {isLoggedIn ? 'Inscrever-se' : 'Faça login para se inscrever'}
             </button>
           </div>
         </div>
-        
       </div>
     </div>
   );

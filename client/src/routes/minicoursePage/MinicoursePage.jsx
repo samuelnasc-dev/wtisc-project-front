@@ -42,7 +42,8 @@ const MinicoursePage = () => {
       date={minicourse.date}
       enrolled={minicourse.enrolled}
       capacity={minicourse.capacity}
-      handleEnroll={() => alert('Inscrição realizada!')} // Você pode substituir isso com a lógica real
+      minicourseId={id} // Passando o ID como prop
+
     />
   );
 };
