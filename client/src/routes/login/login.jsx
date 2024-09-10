@@ -8,7 +8,7 @@ function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const {updateUser} = useContext(AuthContext)
+  const { updateUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -27,15 +27,31 @@ function Login() {
         password,
       });
 
-      updateUser(res.data)
+      // Verifique a resposta da API
+      console.log('Resposta da API:', res.data);
+
+      // Supondo que o token esteja em res.data.token
+      const { token, ...userData } = res.data;
+
+      // Armazenar o token no localStorage
+      localStorage.setItem("token", token);
+
+      // Adicione este log para verificar se o token foi armazenado
+      console.log('Token armazenado:', localStorage.getItem('token'));
+
+      // Atualizar o contexto de autenticação
+      updateUser(userData);
 
       navigate("/");
     } catch (err) {
-      setError(err.response.data.message);
+      // Adicione este log para verificar o erro
+      console.error('Erro no login:', err.response ? err.response.data.message : err.message);
+      setError(err.response ? err.response.data.message : err.message);
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="login">
        <div className="imgContainer">
@@ -66,7 +82,6 @@ function Login() {
           <Link to="/register">Não tem cadastro?</Link>
         </form>
       </div>
-     
     </div>
   );
 }

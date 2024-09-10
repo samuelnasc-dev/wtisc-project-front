@@ -1,6 +1,6 @@
 @import "../../responsive.scss";
 
-nav {
+.navbar {
   width: 100%;
   max-width: 100%;
   height: 100px;
@@ -9,17 +9,22 @@ nav {
   align-items: center;
   background-color: #C3CFEE;
   color: #000000;
-  //padding: 0 120px 0 120px;
-  
+
   a {
     transition: all 0.4s ease;
+    padding: 12px 24px; // Adiciona padding para links e botão
+    margin: 0 10px; // Adiciona margem para links e botão
+    text-decoration: none;
+    color: #000; // Define a cor do texto dos links e do botão
+    display: inline-block; // Garante que o link e o botão se comportem como blocos inline
+    border: none; // Remove a borda, se houver
+
+    &:hover {
+      transform: scale(1.05);
+    }
 
     @include sm {
       display: none;
-    }
-
-    &:hover {
-      scale: 1.05;
     }
   }
 
@@ -27,8 +32,8 @@ nav {
     flex: 3;
     display: flex;
     align-items: center;
-    gap: 50px;
-    padding-left: 257px;
+    gap: 8px;
+    padding-left: 100px;
 
     .logo {
       font-weight: bold;
@@ -58,55 +63,82 @@ nav {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    height: 100%;
-    padding-right: 257px;
+    padding-right: 100px;
+    position: relative;
 
-    @include md {
-      background-color: transparent;
+    @include sm {
+      justify-content: space-between;
     }
 
     a {
+      // Estilos aplicados a todos os links, incluindo o botão "Sair"
       padding: 12px 24px;
-      margin: 20px;
+      margin: 0 10px;
+      text-decoration: none;
+      color: #000; // Define a cor do texto dos links e do botão
+      display: inline-block; // Garante que o link e o botão se comportem como blocos inline
+      border: none; // Remove a borda, se houver
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
 
     .user {
       display: flex;
       align-items: center;
+      gap: 10px;
       font-weight: bold;
-      gap: 10px; // Adiciona um espaço entre o nome do usuário e o link do perfil
+      cursor: pointer;
 
-      .username {
-        color: #ffffff;
-        font-size: 20px; // Ajuste o tamanho da fonte conforme necessário
-        font-weight: normal; // Ajuste o peso da fonte conforme necessário
+      img {
+        width: 30px;
+        height: 30px;
       }
 
-      .profile {
-        border-radius: 8px;
-        color: #ffffff;
-        padding: 12px 24px;
-        background-color: #7400C9;
-        cursor: pointer;
-        border: none;
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 5px; // Espaçamento entre o texto e a notificação
+      span {
+        font-size: 18px;
+        color: #000;
+      }
 
-        .notification {
-          position: absolute;
-          top: -8px;
-          right: -8px;
-          background-color: red;
-          color: white;
-          border-radius: 50%;
-          width: 26px;
-          height: 26px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 12px; // Ajuste o tamanho da fonte conforme necessário
+      .dropdown {
+        position: absolute;
+        top: 43px;
+        right: 0;
+        background-color: #f5f5f5;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 10px;
+        display: flex;
+        gap: 10px;  
+        min-width: 150px;
+        z-index: 999;
+        flex-direction: column;
+        margin-right: 73px;
+
+        a, .logout-button {
+          // Estilos aplicados a links e botão na dropdown
+          padding: 10px 15px;
+          color: #333;
+          text-decoration: none;
+          font-size: 14px;
+          border: none;
+
+          &:hover {
+            background-color: #e0e0e0;
+            border-radius: 4px;
+          }
+        }
+
+        .logout-button {
+          // Adiciona estilos específicos para o botão "Sair"
+          background: none; // Remove o fundo do botão
+          cursor: pointer; // Adiciona o cursor pointer para interatividade
+          color: #c50000; // Define a cor do texto do botão
+          font-size: 14px; // Mantém o mesmo tamanho de fonte que os links
+          text-align: left;
+          padding-left: 25px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
       }
     }
@@ -114,6 +146,8 @@ nav {
     .register {
       background-color: #7400C9;
       color: #ffffff;
+      border-radius: 8px;
+      padding: 12px 24px;
     }
 
     .menuIcon {

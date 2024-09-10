@@ -6,6 +6,7 @@ import Minicourses from "./minicourses/minicourses";
 import Products from "./products/products";
 import Speakers from "./speakers/speakers";
 import Sponsors from "./sponsors/sponsors";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const { currentUser } = useContext(AuthContext);
@@ -24,7 +25,7 @@ function HomePage() {
                 Lorem Ipsum é simplesmente um texto fictício da indústria de impressão e composição. Lorem Ipsum tem sido o padrão da indústria.
               </h3>
               <div className="buttons">
-                <button className="primary-button">Participar</button>
+                <Link className="primary-button" to="/eventsPage/lectures">Participar</Link>
                 <button className="secondary-button">Programação</button>
               </div>
             </div>

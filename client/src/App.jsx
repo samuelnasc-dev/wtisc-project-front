@@ -9,6 +9,9 @@ import Register from "./routes/register/register";
 import EventsPage from "./routes/homePage/eventsPage/eventsPage";
 import LecturePage from "./routes/leacturePage/leacturePage";
 import MinicoursePage from "./routes/minicoursePage/MinicoursePage";
+import Certificates from "./components/certificatePage/Certificate";
+import Inscricoes from "./components/subscriptions/Subscriptions";
+import Configurations from "./components/configUser/Configurations";
 
 
 function App() {
@@ -40,6 +43,18 @@ function App() {
         {
           path:"/minicoursePage/:id",
           element: <MinicoursePage />,
+        },
+        {
+          path:"/certificates",
+          element: <Certificates />
+        },
+        {
+          path: "/inscricoes",
+          element: <Inscricoes />
+        },
+        {
+          path: "/configurations",
+          element: <Configurations />
         }
       ],
     },

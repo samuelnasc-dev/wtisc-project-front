@@ -1,149 +1,149 @@
 @import "../../responsive.scss";
 
 .minicourse-details-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #0e0e10; // Fundo preto
-  color: #fff; // Texto branco
-
-  @include lg {
-    padding: 1.5rem;
-  }
-
-  @include md {
-    padding: 1rem;
-  }
-
-  @include sm {
-    padding: 0.5rem;
-  }
+  background-color: #0e0e0e;
+  color: #fff;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 950px;
+  padding-top: 200px;
 
   .minicourse-header {
     text-align: left;
-    margin-bottom: 1.5rem;
+    margin-bottom: 40px;
+    width: 750px;
 
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      color: #ffffff; // Título em branco
+      margin-bottom: 10px;
     }
 
-    p {
-      font-size: 1rem;
-      color: #e0e0e0; // Texto da data em cinza claro
+    .minicourse-info {
+      font-size: 1.1rem;
+      color: #ccc;
+      span {
+        margin: 0 8px;
+      }
     }
   }
 
-  .minicourse-body {
-    background-color: #1c1c1e; // Seção de fundo cinza escuro
-    padding: 2rem;
-    border-radius: 8px;
+  .minicourse-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    gap: 100px;
 
-    @include md {
-      padding: 1.5rem;
-    }
+    .minicourse-info-card {
+      color: #0e0e0e;
+      background-color: #F0F0F0;
+      padding: 20px;
+      border-radius: 8px;
+      width: 550px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      height: 220px;
 
-    @include sm {
-      padding: 1rem;
-    }
-
-    .minicourse-description {
-      font-size: 1.2rem;
-      color: #dcdcdc; // Texto da descrição em cinza claro
-      margin-bottom: 2rem;
-    }
-
-    .minicourse-instructor {
-      margin-bottom: 2rem;
-
-      h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        color: #ffffff; // Título da seção do instrutor
+      h2 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
       }
 
-      p {
-        font-size: 1rem;
-        color: #e0e0e0; // Nome do instrutor
-      }
-    }
+      .enrollment-details {
+        p {
+          color: #0e0e0e;
+          margin-bottom: 10px;
+          font-size: 1rem;
 
-    .minicourse-enrollment {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      p {
-        font-size: 1rem;
-        color: #ffffff; // Texto de vagas
-      }
-
-      button {
-        background-color: #8a4de4; // Botão roxo
-        color: #ffffff;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #722cc3; // Cor de hover mais escura
+          strong {
+            color: #000;
+          }
         }
 
-        &:disabled {
-          background-color: #333; // Botão desativado cinza escuro
-          cursor: not-allowed;
+        .enroll-button {
+          background-color: #6200ea;
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          width: 100%;
+          margin-top: 20px;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #5300d6;
+          }
+
+          &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+    .minicourse-body {
+      flex: 1;
+
+      h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .minicourse-description {
+        margin-bottom: 40px;
+        line-height: 1.6;
+        color: #bbb;
+      }
+
+      .minicourse-instructor-card {
+        background-color: #430073;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+        .instructor-info {
+          display: flex;
+          gap: 20px;
+
+          .instructor-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          .instructor-details {
+            h4 {
+              font-size: 1.5rem;
+              margin-bottom: 5px;
+            }
+
+            p {
+              font-size: 1rem;
+              color: #ccc;
+            }
+          }
         }
       }
     }
   }
 }
 
-// Estilos de responsividade para o card de inscrição no canto direito
+@include sm {
+  .minicourse-content {
+    flex-direction: column;
+    align-items: center;
 
-.inscription-card {
-  background-color: #2c2c2e;
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  max-width: 300px;
-  text-align: center;
-  margin-top: 1.5rem;
+    .minicourse-info-card {
+      width: 100%;
+      margin-bottom: 40px;
+    }
 
-  @include md {
-    max-width: 250px;
-  }
-
-  @include sm {
-    max-width: 100%;
-    padding: 1rem;
-  }
-
-  h3 {
-    font-size: 1.2rem;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    font-size: 1rem;
-    color: #e0e0e0;
-    margin-bottom: 1rem;
-  }
-
-  button {
-    background-color: #8a4de4;
-    color: #ffffff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #722cc3;
+    .minicourse-body {
+      width: 100%;
     }
   }
 }

@@ -1,0 +1,122 @@
+@import "../../responsive.scss";
+
+.inscricoes-page {
+  background-color: #0e0e0e;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: 80px;
+    max-width: 100%;
+    width: 1336px;
+    padding-top: 200px;
+
+    .menu {
+      background-color: #f4f4f4;
+      border-radius: 8px;
+      padding: 20px;
+      width: 220px;
+      height: fit-content;
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 10px;
+
+          a {
+            color: #333;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+            transition: background-color 0.3s ease;
+
+            &:hover,
+            &.active {
+              background-color: #e0e0e0;
+              border-radius: 4px;
+            }
+
+            &.logout {
+              color: #ff3d3d;
+            }
+          }
+        }
+      }
+    }
+
+    .content {
+      flex: 1;
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .tabs {
+        display: flex;
+        margin-bottom: 20px;
+
+        button {
+            color: #a1a0a0;
+            font-size: 17px;
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+          &.active {
+            color: #e0e0e0;
+          }
+        }
+      }
+
+      .inscricoes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .inscricao-card {
+          background-color: #ffffff;
+          color: #000000;
+          padding: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: 8px;
+          height: 62px;
+
+          span {
+            font-size: 18px;
+          }
+
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+
+            img {
+              width: 20px;
+              height: 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
