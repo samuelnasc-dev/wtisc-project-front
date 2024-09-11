@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import LectureDetails from '../../components/leactures/LectureDetails'; // O componente que criamos
 
 const LecturePage = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Esse "id" é o lectureId
   const [lecture, setLecture] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -40,7 +40,7 @@ const LecturePage = () => {
       location={lecture.location}
       enrolled={lecture.enrolled}
       capacity={lecture.capacity}
-      handleEnroll={() => alert('Inscrição realizada!')}
+      lectureId={id} // Passando o ID da palestra como prop
     />
   );
 };

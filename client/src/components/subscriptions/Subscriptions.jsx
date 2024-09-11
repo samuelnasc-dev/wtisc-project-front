@@ -24,7 +24,7 @@ const Inscricoes = () => {
     fetchInscricoes();
   }, []);
 
-  // Função para remover inscrição
+  // Função para remover inscrição em minicurso
   const handleRemoveMinicurso = async (enrollmentId) => {
     try {
       await axios.delete(`http://localhost:8800/subscriptions/minicourses/${enrollmentId}`, {
@@ -40,6 +40,23 @@ const Inscricoes = () => {
     }
   };
 
+  // Função para remover inscrição em palestra
+  const handleRemovePalestra = async (enrollmentId) => {
+    try {
+      await axios.delete(`http://localhost:8800/subscriptions/lectures/${enrollmentId}`, {
+        withCredentials: true, // Enviar cookies de autenticação
+      });
+
+      // Atualiza a lista de palestras após a exclusão
+      setInscricoesPalestras((prevInscricoes) =>
+        prevInscricoes.filter((inscricao) => inscricao.enrollmentId !== enrollmentId)
+      );
+    } catch (error) {
+      console.error("Erro ao remover inscrição:", error);
+    }
+  };
+
+  // Renderiza as inscrições, incluindo o botão de exclusão
   const renderInscricoes = (inscricoes, tipo) => {
     if (!inscricoes || inscricoes.length === 0) {
       return <p>Você ainda não está inscrito em nenhum {tipo}.</p>;
@@ -51,6 +68,11 @@ const Inscricoes = () => {
         {/* Botão para remover inscrição */}
         {tipo === "minicourse" && (
           <button onClick={() => handleRemoveMinicurso(inscricao.enrollmentId)}>
+            <img src="/lixeira.png" alt="Remover" />
+          </button>
+        )}
+        {tipo === "lecture" && (
+          <button onClick={() => handleRemovePalestra(inscricao.enrollmentId)}>
             <img src="/lixeira.png" alt="Remover" />
           </button>
         )}
@@ -79,8 +101,8 @@ const Inscricoes = () => {
           </div>
           <div className="inscricoes-list">
             {activeTab === "palestras"
-              ? renderInscricoes(inscricoesPalestras, 'lecture')
-              : renderInscricoes(inscricoesMinicursos, 'minicourse')}
+              ? renderInscricoes(inscricoesPalestras, "lecture")
+              : renderInscricoes(inscricoesMinicursos, "minicourse")}
           </div>
         </div>
         <div>
