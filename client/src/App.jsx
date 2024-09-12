@@ -14,7 +14,6 @@ import Inscricoes from "./components/subscriptions/Subscriptions";
 import Configurations from "./components/configUser/Configurations";
 import ConfirmPresence from "./components/confirmPresence/ConfirmPresence";
 
-
 function App() {
   const router = createBrowserRouter([
     {
@@ -58,8 +57,8 @@ function App() {
           element: <Configurations />
         },
         {
-          path:"/confirm-presence/:minicourseId",
-          element:<ConfirmPresence />
+          path:"/confirm-presence/:type/:eventId",
+          element: <ConfirmPresence />
         }
       ],
     },

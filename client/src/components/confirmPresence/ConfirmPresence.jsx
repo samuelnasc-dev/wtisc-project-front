@@ -4,7 +4,7 @@ import axios from 'axios';
 import "./ConfirmPresenceStyle.scss";
 
 const ConfirmPresence = () => {
-  const { minicourseId } = useParams();  // Obtém o ID do minicurso a partir da URL
+  const { type, eventId } = useParams();  // Obtém o tipo de evento e o ID a partir da URL
   const navigate = useNavigate();  // Hook para navegação
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -12,11 +12,16 @@ const ConfirmPresence = () => {
   const handleConfirm = async () => {
     setLoading(true);
     try {
-      const eventId = minicourseId;
+      // Define a URL e o tipo de evento com base no tipo de evento
+      const presenceUrl = type === "minicourse" 
+        ? `http://localhost:8800/minicourses/auth/${eventId}` 
+        : `http://localhost:8800/lectures/auth/${eventId}`;
+
+      const eventType = type.toUpperCase();
 
       // Primeiro, envia a requisição PUT para confirmar a presença
-      const presenceResponse = await axios.put(`http://localhost:8800/minicourses/auth/${eventId}`, {
-        eventType: "MINICOURSE",
+      const presenceResponse = await axios.put(presenceUrl, {
+        eventType: eventType,
       }, {
         withCredentials: true // Garante que os cookies são enviados na requisição
       });
@@ -25,7 +30,7 @@ const ConfirmPresence = () => {
         // Se o PUT foi bem-sucedido, envia o POST para gerar o certificado
         const certificateResponse = await axios.post('http://localhost:8800/certificates/', {
           eventId: eventId,
-          eventType: "MINICOURSE",
+          eventType: eventType,
         }, {
           withCredentials: true // Envia os cookies junto com a requisição
         });
@@ -51,8 +56,8 @@ const ConfirmPresence = () => {
   return (
     <div className="confirm-presence-page">
       <div className="confirmation-box">
-        <h1>Confirmar Presença no Minicurso</h1>
-        <p>Deseja confirmar sua presença neste minicurso?</p>
+        <h1>Confirmar Presença no Evento</h1>
+        <p>Deseja confirmar sua presença neste evento?</p>
         {loading ? (
           <p>Processando...</p>
         ) : (
