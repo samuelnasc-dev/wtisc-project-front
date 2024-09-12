@@ -12,6 +12,7 @@ import MinicoursePage from "./routes/minicoursePage/MinicoursePage";
 import Certificates from "./components/certificatePage/Certificate";
 import Inscricoes from "./components/subscriptions/Subscriptions";
 import Configurations from "./components/configUser/Configurations";
+import ConfirmPresence from "./components/confirmPresence/ConfirmPresence";
 
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
         {
           path: "/configurations",
           element: <Configurations />
+        },
+        {
+          path:"/confirm-presence/:minicourseId",
+          element:<ConfirmPresence />
         }
       ],
     },
