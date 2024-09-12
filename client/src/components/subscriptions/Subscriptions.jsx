@@ -12,7 +12,6 @@ const Inscricoes = () => {
   const [itemToRemove, setItemToRemove] = useState(null);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
-
   useEffect(() => {
     const fetchInscricoes = async () => {
       try {
@@ -88,7 +87,11 @@ const Inscricoes = () => {
 
   const renderInscricoes = (inscricoes, tipo) => {
     if (!inscricoes || inscricoes.length === 0) {
-      return <p>Você ainda não está inscrito em nenhum {tipo}.</p>;
+      return (
+        <p>
+          Você ainda não tem inscrições em {tipo === "lecture" ? "palestras" : "minicursos"}.
+        </p>
+      );
     }
 
     return inscricoes.map((inscricao) => (
