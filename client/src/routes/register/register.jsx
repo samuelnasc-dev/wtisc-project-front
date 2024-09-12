@@ -55,7 +55,7 @@ function Register() {
           <input className="inputDemaisDados" name="cpf" type="text" placeholder="CPF" />
           <input className="inputDemaisDados" name="email" type="text" placeholder="Email" />
           <input className="inputDemaisDados" name="password" type="password" placeholder="Senha" />
-          <button disabled={isLoading}>Cadastre-se</button>
+          <button disabled={isLoading}>Cadastrar</button>
           {error && <span>{error}</span>}
           <div>
             <Link to="/login">Já tem cadastro?</Link>

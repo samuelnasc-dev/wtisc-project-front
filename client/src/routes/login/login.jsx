@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import "./login.scss";
+import Cookies from 'js-cookie';
 
 function Login() {
   const [error, setError] = useState("");
@@ -17,34 +18,27 @@ function Login() {
     setIsLoading(true);
     setError("");
     const formData = new FormData(e.target);
-
+  
     const cpf = formData.get("cpf");
     const password = formData.get("password");
-
+  
     try {
-      const res = await apiRequest.post("/auth/login", {
-        cpf,
-        password,
-      });
-
-      // Verifique a resposta da API
+      const res = await apiRequest.post("/auth/login", { cpf, password });
+  
       console.log('Resposta da API:', res.data);
-
-      // Supondo que o token esteja em res.data.token
+  
       const { token, ...userData } = res.data;
-
-      // Armazenar o token no localStorage
-      localStorage.setItem("token", token);
-
-      // Adicione este log para verificar se o token foi armazenado
-      console.log('Token armazenado:', localStorage.getItem('token'));
-
-      // Atualizar o contexto de autenticação
+  
+      // Armazenar o token em cookies
+      Cookies.set('token', token, { expires: 7 });
+  
+      console.log('Token armazenado:', Cookies.get('token'));
+  
+      // Atualizar o contexto com todos os dados do usuário
       updateUser(userData);
-
+  
       navigate("/");
     } catch (err) {
-      // Adicione este log para verificar o erro
       console.error('Erro no login:', err.response ? err.response.data.message : err.message);
       setError(err.response ? err.response.data.message : err.message);
     } finally {

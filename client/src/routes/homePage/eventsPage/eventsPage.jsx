@@ -41,7 +41,10 @@ function EventsPage() {
       console.error("ID do evento não encontrado.");
     }
   };
-  
+
+  const handleCardClick = (eventId, isMinicourse) => {
+    handleViewMore(eventId, isMinicourse);
+  };
 
   return (
     <div className="eventos-container">
@@ -65,26 +68,32 @@ function EventsPage() {
 
       <div className="carousel">
         {data.length > 0 ? (
-            data.map((event, index) => (
+          data.map((event, index) => (
             <div
-                key={`${activeTab}-${event.lectureId || event.minicourseId || index}`}
-                className="event-card"
+              key={`${activeTab}-${event.lectureId || event.minicourseId || index}`}
+              className="event-card"
+              onClick={() => handleCardClick(event.lectureId || event.minicourseId, !!event.minicourseId)}
             >
-                <h2>{event.title}</h2>
-                <p>Por: {event.speaker || event.instructor}</p>
-                <p>{event.description}</p>
-                <p>{event.location}</p>
-                <div className='buttonCard'>
-                    <button onClick={() => handleViewMore(event.lectureId || event.minicourseId, !!event.minicourseId)}>
-                      Ver Mais
-                    </button>
-                </div>
+              <h2>{event.title}</h2>
+              <p>Por: {event.speaker || event.instructor}</p>
+              <p>{event.description}</p>
+              <p>{event.location}</p>
+              <div className='buttonCard'>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Impede que o clique no botão propague para o card
+                    handleViewMore(event.lectureId || event.minicourseId, !!event.minicourseId);
+                  }}
+                >
+                  Ver Mais
+                </button>
+              </div>
             </div>
-            ))
+          ))
         ) : (
-            <p>Nenhum evento encontrado.</p>
+          <p>Nenhum evento encontrado.</p>
         )}
-        </div>
+      </div>
     </div>
   );
 }

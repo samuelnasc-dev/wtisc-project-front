@@ -75,11 +75,17 @@
           &:hover {
             background-color: #5300d6;
           }
-
+          
           &:disabled {
             background-color: #ccc;
             cursor: not-allowed;
           }
+          
+        }
+        
+        .enroll-button.enrolled {
+          background-color: #C5C5C5; // Cor para o botão quando o usuário estiver inscrito
+          cursor: not-allowed; // Altera o cursor para indicar que o botão está desabilitado
         }
       }
     }
@@ -126,6 +132,58 @@
               color: #ccc;
             }
           }
+        }
+      }
+    }
+  }
+
+  /* Modal */
+
+  .confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal-content {
+      color: #000000;
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 25px;
+      width: 300px;
+      text-align: center;
+
+      p {
+        margin-bottom: 15px;
+      }
+
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:first-of-type {
+          background-color: #430073;
+          color: #ffffff;
+        }
+
+        &:last-of-type {
+          background-color: #ffffff;
+          border: 1px solid #430073;
+          color: #430073;
+        }
+
+        &:hover {
+          opacity: 0.8;
         }
       }
     }

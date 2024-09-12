@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./InscricoesStyle.scss";
+import ToastNotification from "../toastrNotification/ToastrNotification";
 
 const Inscricoes = () => {
   const [activeTab, setActiveTab] = useState("palestras");
   const [inscricoesPalestras, setInscricoesPalestras] = useState([]);
   const [inscricoesMinicursos, setInscricoesMinicursos] = useState([]);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmAction, setConfirmAction] = useState(null);
+  const [itemToRemove, setItemToRemove] = useState(null);
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
+
 
   useEffect(() => {
     const fetchInscricoes = async () => {
@@ -24,14 +30,13 @@ const Inscricoes = () => {
     fetchInscricoes();
   }, []);
 
-  // Função para remover inscrição em minicurso
   const handleRemoveMinicurso = async (enrollmentId) => {
     try {
       await axios.delete(`http://localhost:8800/subscriptions/minicourses/${enrollmentId}`, {
         withCredentials: true, // Enviar cookies de autenticação
       });
+      setToast({ show: true, message: "Inscrição excluída!", type: "success" });
 
-      // Atualiza a lista de minicursos após a exclusão
       setInscricoesMinicursos((prevInscricoes) =>
         prevInscricoes.filter((inscricao) => inscricao.enrollmentId !== enrollmentId)
       );
@@ -40,14 +45,13 @@ const Inscricoes = () => {
     }
   };
 
-  // Função para remover inscrição em palestra
   const handleRemovePalestra = async (enrollmentId) => {
     try {
       await axios.delete(`http://localhost:8800/subscriptions/lectures/${enrollmentId}`, {
         withCredentials: true, // Enviar cookies de autenticação
       });
+      setToast({ show: true, message: "Inscrição excluída!", type: "success" });
 
-      // Atualiza a lista de palestras após a exclusão
       setInscricoesPalestras((prevInscricoes) =>
         prevInscricoes.filter((inscricao) => inscricao.enrollmentId !== enrollmentId)
       );
@@ -56,7 +60,32 @@ const Inscricoes = () => {
     }
   };
 
-  // Renderiza as inscrições, incluindo o botão de exclusão
+  // Função para abrir a caixa de confirmação
+  const openConfirmation = (enrollmentId, type) => {
+    setItemToRemove({ enrollmentId, type });
+    setShowConfirmation(true);
+  };
+
+  // Função para confirmar a exclusão
+  const confirmRemoval = async () => {
+    if (itemToRemove) {
+      const { enrollmentId, type } = itemToRemove;
+      if (type === "minicourse") {
+        await handleRemoveMinicurso(enrollmentId);
+      } else if (type === "lecture") {
+        await handleRemovePalestra(enrollmentId);
+      }
+      setShowConfirmation(false);
+      setItemToRemove(null);
+    }
+  };
+
+  // Função para cancelar a exclusão
+  const cancelRemoval = () => {
+    setShowConfirmation(false);
+    setItemToRemove(null);
+  };
+
   const renderInscricoes = (inscricoes, tipo) => {
     if (!inscricoes || inscricoes.length === 0) {
       return <p>Você ainda não está inscrito em nenhum {tipo}.</p>;
@@ -65,17 +94,9 @@ const Inscricoes = () => {
     return inscricoes.map((inscricao) => (
       <div key={inscricao.enrollmentId} className="inscricao-card">
         <span>{inscricao[tipo]?.title || "Título não disponível"}</span>
-        {/* Botão para remover inscrição */}
-        {tipo === "minicourse" && (
-          <button onClick={() => handleRemoveMinicurso(inscricao.enrollmentId)}>
-            <img src="/lixeira.png" alt="Remover" />
-          </button>
-        )}
-        {tipo === "lecture" && (
-          <button onClick={() => handleRemovePalestra(inscricao.enrollmentId)}>
-            <img src="/lixeira.png" alt="Remover" />
-          </button>
-        )}
+        <button onClick={() => openConfirmation(inscricao.enrollmentId, tipo)}>
+          <img src="/lixeira.png" alt="Remover" />
+        </button>
       </div>
     ));
   };
@@ -110,25 +131,33 @@ const Inscricoes = () => {
         </div>
         <div className="menu">
           <ul>
-            <li>
-              <a href="/configurations">Configurações</a>
-            </li>
-            <li>
-              <a href="/inscricoes" className="active">
-                Inscrições
-              </a>
-            </li>
-            <li>
-              <a href="/certificates">Certificados</a>
-            </li>
-            <li>
-              <a href="/logout" className="logout">
-                Sair
-              </a>
-            </li>
+            <li><a href="/configurations">Configurações</a></li>
+            <li><a href="/inscricoes" className="active">Inscrições</a></li>
+            <li><a href="/certificates">Certificados</a></li>
+            <li><a href="/logout" className="logout">Sair</a></li>
           </ul>
         </div>
       </div>
+
+      {/* Caixa de confirmação */}
+      {showConfirmation && (
+        <div className="confirmation-modal">
+          <div className="modal-content">
+            <p>Tem certeza de que deseja remover sua inscrição?</p>
+            <button onClick={confirmRemoval}>Confirmar</button>
+            <button onClick={cancelRemoval}>Cancelar</button>
+          </div>
+        </div>
+      )}
+
+      {/* Notificação de Toast */}
+      {toast.show && (
+        <ToastNotification
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast({ show: false, message: "", type: "" })}
+        />
+      )}
     </div>
   );
 };

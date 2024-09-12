@@ -1,22 +1,22 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { useNotificationStore } from "../../lib/notificationStore";
-import apiRequest from "../../lib/apiRequest"; // Certifique-se de que a importação de apiRequest está correta
+import apiRequest from "../../lib/apiRequest";
 import "./navbar.scss";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null); // Referência para o dropdown
-  const navigate = useNavigate(); // Adiciona o hook useNavigate
+  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   const { currentUser, updateUser } = useContext(AuthContext);
+  console.log("currentUser:", currentUser);
 
-  const fetch = useNotificationStore((state) => state.fetch);
-  const number = useNotificationStore((state) => state.number);
 
   const handleLogout = async () => {
+    console.log("currentUser:", currentUser);
+
     try {
       await apiRequest.post("/auth/logout");
       updateUser(null);
@@ -26,11 +26,13 @@ function Navbar() {
     }
   };
 
-  useEffect(() => {
-    if (currentUser) {
-      fetch();
-    }
-  }, [currentUser, fetch]);
+  // useEffect(() => {
+  //   console.log("currentUser:", currentUser);
+
+  //   if (currentUser) {
+  //     fetch();
+  //   }
+  // }, [currentUser, fetch]);
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
@@ -60,7 +62,7 @@ function Navbar() {
         {currentUser ? (
           <div className="user" onClick={toggleDropdown}>
             <img src="/user.png" alt="User" />
-            <span>Olá, {currentUser.user.name}</span>
+            <span>Olá, {currentUser.user ? currentUser.user.name : 'Usuário'}</span>
             {dropdownOpen && (
               <div className="dropdown" ref={dropdownRef}>
                 <Link to="/configurations">Configurações</Link>
