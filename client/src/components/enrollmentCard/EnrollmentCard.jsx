@@ -48,7 +48,7 @@ const EnrollmentCard = ({ title, availableSpots, eventId, eventType }) => {
       try {
         await axios.get('/api/auth/check', { withCredentials: true });
         setIsLoggedIn(true);
-      } catch (error) {
+      } catch {
         setIsLoggedIn(false);
       }
     };
@@ -86,7 +86,10 @@ const EnrollmentCard = ({ title, availableSpots, eventId, eventType }) => {
     if (isLoggedIn) {
       setShowModal(true);
     } else {
-      navigate('/login');
+      setToast({ show: true, message: "Por favor, faça login para se inscrever.", type: "info" });
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000); // Espera 2 segundos antes de redirecionar
     }
   };
 

@@ -23,13 +23,28 @@ const SubMenuPage = () => {
     <div className="menu">
       <ul>
         <li>
-          <NavLink to="/configurations" activeClassName="active">Configurações</NavLink>
+          <NavLink 
+            to="/configurations" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Configurações
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/inscricoes" activeClassName="active">Inscrições</NavLink>
+          <NavLink 
+            to="/inscricoes" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Inscrições
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/certificates" activeClassName="active">Certificados</NavLink>
+          <NavLink 
+            to="/certificates" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Certificados
+          </NavLink>
         </li>
         <li>
           <button className="logout" onClick={handleLogout}>Sair</button>
