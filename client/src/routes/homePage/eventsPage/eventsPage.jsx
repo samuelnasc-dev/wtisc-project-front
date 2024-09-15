@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Importe useNavigate
-import "./eventsPage.scss";
+import { useParams, useNavigate } from 'react-router-dom';
+import EventCard from '../../../components/eventCard/EventCard'; // Atualize o caminho conforme necessário
+import './eventsPage.scss';
 
 function EventsPage() {
   const { type } = useParams(); // Captura o parâmetro de rota
@@ -69,26 +70,13 @@ function EventsPage() {
       <div className="carousel">
         {data.length > 0 ? (
           data.map((event, index) => (
-            <div
+            <EventCard
               key={`${activeTab}-${event.lectureId || event.minicourseId || index}`}
-              className="event-card"
-              onClick={() => handleCardClick(event.lectureId || event.minicourseId, !!event.minicourseId)}
-            >
-              <h2>{event.title}</h2>
-              <p>Por: {event.speaker || event.instructor}</p>
-              <p>{event.description}</p>
-              <p>{event.location}</p>
-              <div className='buttonCard'>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Impede que o clique no botão propague para o card
-                    handleViewMore(event.lectureId || event.minicourseId, !!event.minicourseId);
-                  }}
-                >
-                  Ver Mais
-                </button>
-              </div>
-            </div>
+              event={event}
+              handleCardClick={handleCardClick}
+              handleViewMore={handleViewMore}
+              activeTab={activeTab}
+            />
           ))
         ) : (
           <p>Nenhum evento encontrado.</p>

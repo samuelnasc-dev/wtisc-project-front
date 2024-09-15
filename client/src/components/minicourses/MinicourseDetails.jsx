@@ -1,40 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './MinicourseDetails.scss';
 import EnrollmentCard from '../enrollmentCard/EnrollmentCard';
-import ToastNotification from '../toastrNotification/ToastrNotification';
-
-// Modal de confirmação
-const ConfirmationModal = ({ show, onConfirm, onCancel }) => {
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        onConfirm();
-      }
-    };
-
-    if (show) {
-      window.addEventListener('keydown', handleKeyPress);
-    }
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [show, onConfirm]);
-
-  if (!show) return null;
-
-  return (
-    <div className="confirmation-modal">
-      <div className="modal-content">
-        <p>Tem certeza de que deseja se inscrever neste minicurso?</p>
-        <button onClick={onConfirm}>Confirmar</button>
-        <button onClick={onCancel}>Cancelar</button>
-      </div>
-    </div>
-  );
-};
 
 // Função de formatação de data
 const formatDate = (dateString) => {
@@ -54,67 +20,6 @@ const formatDate = (dateString) => {
 };
 
 const MinicourseDetails = ({ title, description, instructor, date, minicourseLocation, enrolled, capacity, minicourseId }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isEnrolled, setIsEnrolled] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [availableSpots, setAvailableSpots] = useState(capacity - enrolled);
-  const [toast, setToast] = useState({ show: false, message: "", type: "" });
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        await axios.get('/api/auth/check');
-        setIsLoggedIn(true);
-        const response = await axios.get(`/api/subscriptions/minicourses/${minicourseId}`, { withCredentials: true });
-        setIsEnrolled(response.data.isEnrolled);
-      } catch (error) {
-        setIsLoggedIn(false);
-        setIsEnrolled(false);
-      }
-    };
-
-    checkAuth();
-  }, [minicourseId]);
-
-  const handleEnroll = () => {
-    if (!isLoggedIn) {
-      window.location.href = '/login';
-      return;
-    }
-
-    if (isEnrolled) {
-      return;
-    }
-
-    setShowModal(true);
-  };
-
-  const confirmEnrollment = async () => {
-    setShowModal(false);
-    
-    try {
-      if (!minicourseId) {
-        throw new Error('ID do minicurso não definido.');
-      }
-
-      const response = await axios.post(`http://localhost:8800/subscriptions/minicourses/`, { minicourseId }, { withCredentials: true });
-
-      if (response.status === 201) {
-        setAvailableSpots(prev => prev - 1);
-        setIsEnrolled(true);
-        setToast({ show: true, message: "Inscrição realizada!", type: "success" });
-      } else {
-        throw new Error('Falha na inscrição.');
-      }
-    } catch (error) {
-      setToast({ show: true, message: "Inscrição não realizada!", type: "error" });
-    }
-  };
-
-  const cancelEnrollment = () => {
-    setShowModal(false);
-  };
-
   // Formatar a data
   const formattedDate = formatDate(date);
 
@@ -151,26 +56,11 @@ const MinicourseDetails = ({ title, description, instructor, date, minicourseLoc
 
         <EnrollmentCard
           title={title}
-          availableSpots={availableSpots}
-          isEnrolled={isEnrolled}
-          isLoggedIn={isLoggedIn}
-          handleEnroll={handleEnroll}
+          availableSpots={capacity - enrolled}
+          eventId={minicourseId}
+          eventType="minicourse"
         />
       </div>
-
-      <ConfirmationModal
-        show={showModal}
-        onConfirm={confirmEnrollment}
-        onCancel={cancelEnrollment}
-      />
-
-      {toast.show && (
-        <ToastNotification
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast({ show: false, message: "", type: "" })}
-        />
-      )}
     </div>
   );
 };
