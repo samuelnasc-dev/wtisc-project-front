@@ -1,0 +1,44 @@
+.menu {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    width: 220px;
+    height: fit-content;
+  
+    ul {
+      list-style: none;
+      padding: 0;
+  
+      li {
+        margin-bottom: 10px;
+  
+        a,
+        button {
+          color: #333;
+          text-decoration: none;
+          padding: 12px 20px;
+          display: block;
+          transition: background-color 0.3s ease;
+          border: none; /* Remove the border for buttons */
+          background: none; /* Remove the background for buttons */
+          cursor: pointer; /* Change cursor to pointer for buttons */
+          text-align: left; /* Align text to the left for better appearance */
+          font: inherit; /* Inherit font settings from parent */
+        }
+
+        
+  
+        a:hover,
+        a.active,
+        button:hover {
+          background-color: #e0e0e0;
+          border-radius: 4px;
+        }
+  
+        .logout {
+          color: #ff3d3d;
+        }
+      }
+    }
+  }
+  

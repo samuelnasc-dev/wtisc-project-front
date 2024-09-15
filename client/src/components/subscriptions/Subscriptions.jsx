@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./InscricoesStyle.scss";
 import ToastNotification from "../toastrNotification/ToastrNotification";
+import SubMenuPage from "../subMenuPage/SubMenuPage";
 
 const Inscricoes = () => {
   const [activeTab, setActiveTab] = useState("palestras");
@@ -132,14 +133,7 @@ const Inscricoes = () => {
         <div>
           <img src="/travessao.png" alt="" />
         </div>
-        <div className="menu">
-          <ul>
-            <li><a href="/configurations">Configurações</a></li>
-            <li><a href="/inscricoes" className="active">Inscrições</a></li>
-            <li><a href="/certificates">Certificados</a></li>
-            <li><a href="/logout" className="logout">Sair</a></li>
-          </ul>
-        </div>
+        <SubMenuPage />
       </div>
 
       {/* Caixa de confirmação */}

@@ -1,0 +1,32 @@
+.program {
+    padding: 50px;
+    background-color: #0e0d12; // Preto do fundo da programação
+    color: white;
+    text-align: center;
+  
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+  
+    p {
+      font-size: 18px;
+      margin-bottom: 40px;
+      color: #bdbdbd; // Cinza para o subtítulo
+    }
+  
+    .program-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      img {
+        max-width: 80%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); // Efeito de sombra
+      }
+    }
+  }
+  

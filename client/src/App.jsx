@@ -9,10 +9,12 @@ import Register from "./routes/register/register";
 import EventsPage from "./routes/homePage/eventsPage/eventsPage";
 import LecturePage from "./routes/leacturePage/leacturePage";
 import MinicoursePage from "./routes/minicoursePage/MinicoursePage";
-import Certificates from "./components/certificatePage/Certificate";
+import Certificates from "./routes/certificatePage/Certificate";
 import Inscricoes from "./components/subscriptions/Subscriptions";
-import Configurations from "./components/configUser/Configurations";
+import Configurations from "./routes/configUser/Configurations";
 import ConfirmPresence from "./components/confirmPresence/ConfirmPresence";
+import StorePage from "./routes/storePage/StorePage";
+import ProgramPage from "./routes/programPage/ProgramPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -59,6 +61,14 @@ function App() {
         {
           path:"/confirm-presence/:type/:eventId",
           element: <ConfirmPresence />
+        },
+        {
+          path:"/storepage",
+          element: <StorePage />
+        },
+        {
+          path:"/programpage",
+          element: <ProgramPage />
         }
       ],
     },
