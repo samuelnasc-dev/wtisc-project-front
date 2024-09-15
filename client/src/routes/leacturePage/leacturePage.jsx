@@ -37,7 +37,7 @@ const LecturePage = () => {
       description={lecture.description}
       speaker={lecture.speaker}
       date={lecture.date}
-      location={lecture.location}
+      lectureLocation={lecture.location} // Passando a localização corretamente
       enrolled={lecture.enrolled}
       capacity={lecture.capacity}
       lectureId={id} // Passando o ID da palestra como prop

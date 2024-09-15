@@ -2,7 +2,25 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './LectureDetails.scss';
+import EnrollmentCard from '../enrollmentCard/EnrollmentCard'; // Importe o EnrollmentCard
 import ToastNotification from '../toastrNotification/ToastrNotification';
+
+// Função de formatação de data
+const formatDate = (dateString) => {
+  const months = [
+    'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+    'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+  ];
+
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+
+  return `Dia ${day} ${month} de ${year} às ${hours}:${minutes}`;
+};
 
 // Modal de confirmação
 const ConfirmationModal = ({ show, onConfirm, onCancel }) => {
@@ -109,6 +127,9 @@ const LectureDetails = ({ title, description, speaker, date, lectureLocation, en
     setShowModal(false);
   };
 
+  // Formatar a data
+  const formattedDate = formatDate(date);
+
   return (
     <div className="lecture-details-container">
       <div className="lecture-content">
@@ -116,7 +137,7 @@ const LectureDetails = ({ title, description, speaker, date, lectureLocation, en
           <div className="lecture-header">
             <h1>{title}</h1>
             <p className="lecture-info">
-              <span>{date}</span> <span>|</span> <span>{lectureLocation}</span>
+              <span>{formattedDate}</span> <span>|</span> <span>{lectureLocation}</span>
             </p>
           </div>
           <div className="lecture-body">
@@ -140,21 +161,13 @@ const LectureDetails = ({ title, description, speaker, date, lectureLocation, en
           <img src="/travessao.png" alt="" />
         </div>
 
-        <div className="lecture-info-card">
-          <h2>Inscrição</h2>
-          <div className="enrollment-details">
-            <p>Ingresso para palestra – {title}</p>
-            <p><strong>Vagas disponíveis:</strong> {availableSpots}</p>
-            <p><strong>Inscrições até:</strong> 17/10/2023</p>
-            <button
-              onClick={handleEnroll}
-              disabled={availableSpots <= 0 || isEnrolled} // Desabilita o botão se já estiver inscrito
-              className={`enroll-button ${isEnrolled ? 'enrolled' : ''}`} // Adiciona classe condicional
-            >
-              {isEnrolled ? 'Inscrito' : isLoggedIn ? 'Inscrever-se' : 'Faça login para se inscrever'}
-            </button>
-          </div>
-        </div>
+        <EnrollmentCard
+          title={title}
+          availableSpots={availableSpots}
+          isEnrolled={isEnrolled}
+          isLoggedIn={isLoggedIn}
+          handleEnroll={handleEnroll}
+        />
       </div>
 
       <ConfirmationModal

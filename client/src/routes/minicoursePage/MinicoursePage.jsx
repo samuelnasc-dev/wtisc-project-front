@@ -40,6 +40,7 @@ const MinicoursePage = () => {
       description={minicourse.description}
       instructor={minicourse.instructor}
       date={minicourse.date}
+      minicourseLocation={minicourse.location}
       enrolled={minicourse.enrolled}
       capacity={minicourse.capacity}
       minicourseId={id} // Passando o ID como prop
