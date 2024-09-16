@@ -1,0 +1,45 @@
+.menu {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    width: 220px;
+    height: fit-content;
+  
+    ul {
+      list-style: none;
+      padding: 0;
+  
+      li {
+        margin-bottom: 10px;
+  
+        a,
+        button {
+          color: #333;
+          text-decoration: none;
+          padding: 12px 20px;
+          display: block;
+          transition: background-color 0.3s ease;
+          border: none; /* Remove border for buttons */
+          background: none; /* Remove background for buttons */
+          cursor: pointer; /* Change cursor to pointer for buttons */
+          text-align: left; /* Align text to the left for better appearance */
+          font: inherit; /* Inherit font settings from parent */
+          border-radius: 4px; /* Add border-radius to match button style */
+          width: 100%; /* Ensure full width for consistent button size */
+          box-sizing: border-box; /* Ensure padding is included in width */
+        }
+  
+        a:hover,
+        a.active,
+        button:hover {
+          background-color: #e0e0e0;
+        }
+  
+        .logout {
+          color: #ff3d3d;
+          background-color: transparent; /* Make sure the background is transparent by default */
+        }
+      }
+    }
+  }
+  

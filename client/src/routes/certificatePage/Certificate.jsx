@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CertificateStyle.scss";
+import { AuthContext } from "../../context/AuthContext";
+import ToastNotification from "../../components/toastrNotification/ToastrNotification"; // Importando ToastNotification
+import SubMenuPage from "../../components/subMenuPage/SubMenuPage";
 
 // Função para buscar o título do evento com base no eventId
 const fetchEventName = async (eventId, eventType) => {
@@ -23,9 +26,13 @@ const fetchEventName = async (eventId, eventType) => {
   }
 };
 
+
 const Certificates = () => {
   const [certificates, setCertificates] = useState([]);
   const [eventTitles, setEventTitles] = useState({});
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [itemToRemove, setItemToRemove] = useState(null);
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
   useEffect(() => {
     const fetchCertificates = async () => {
@@ -55,6 +62,38 @@ const Certificates = () => {
     fetchCertificates();
   }, []);
 
+  const handleRemoveCertificate = async (certificateId) => {
+    try {
+      await axios.delete(`http://localhost:8800/certificates/${certificateId}`, { withCredentials: true });
+      setToast({ show: true, message: "Certificado excluído!", type: "success" });
+
+      setCertificates((prevCertificates) =>
+        prevCertificates.filter((cert) => cert.certificateId !== certificateId)
+      );
+    } catch (error) {
+      console.error("Erro ao remover certificado:", error);
+      setToast({ show: true, message: "Erro ao excluir certificado.", type: "error" });
+    }
+  };
+
+  const openConfirmation = (certificateId) => {
+    setItemToRemove(certificateId);
+    setShowConfirmation(true);
+  };
+
+  const confirmRemoval = async () => {
+    if (itemToRemove) {
+      await handleRemoveCertificate(itemToRemove);
+      setShowConfirmation(false);
+      setItemToRemove(null);
+    }
+  };
+
+  const cancelRemoval = () => {
+    setShowConfirmation(false);
+    setItemToRemove(null);
+  };
+
   return (
     <div className="certificates-page">
       <div className="container">
@@ -65,9 +104,14 @@ const Certificates = () => {
               certificates.map((cert) => (
                 <div key={cert.certificateId} className="certificate-card">
                   <span>{eventTitles[cert.eventId] || 'Título não disponível'}</span>
-                  <a href={`http://localhost:8800/certificates/issue/${cert.certificateId}`} target="_blank" rel="noopener noreferrer">
-                    <img src="Vector.png" alt="Visualizar" />
-                  </a>
+                  <div className="buttons-certificate">
+                    <a href={`http://localhost:8800/certificates/issue/${cert.certificateId}`} target="_blank" rel="noopener noreferrer">
+                      <img src="Vector.png" alt="Visualizar" />
+                    </a>
+                    <button onClick={() => openConfirmation(cert.certificateId)}>
+                      <img src="/lixeira.png" alt="Remover" />
+                    </button>
+                  </div>
                 </div>
               ))
             ) : (
@@ -78,15 +122,28 @@ const Certificates = () => {
         <div>
           <img src="/travessao.png" alt="" />
         </div>
-        <div className="menu">
-          <ul>
-            <li><a href="/configurations">Configurações</a></li>
-            <li><a href="/inscricoes">Inscrições</a></li>
-            <li><a href="/certificados" className="active">Certificados</a></li>
-            <li><a href="/logout" className="logout">Sair</a></li>
-          </ul>
-        </div>
+        <SubMenuPage />
       </div>
+
+      {/* Caixa de confirmação */}
+      {showConfirmation && (
+        <div className="confirmation-modal">
+          <div className="modal-content">
+            <p>Tem certeza de que deseja remover este certificado?</p>
+            <button onClick={confirmRemoval}>Confirmar</button>
+            <button onClick={cancelRemoval}>Cancelar</button>
+          </div>
+        </div>
+      )}
+
+      {/* Notificação de Toast */}
+      {toast.show && (
+        <ToastNotification
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast({ show: false, message: "", type: "" })}
+        />
+      )}
     </div>
   );
 };

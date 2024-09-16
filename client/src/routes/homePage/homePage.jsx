@@ -26,7 +26,7 @@ function HomePage() {
               </h3>
               <div className="buttons">
                 <Link className="primary-button" to="/eventsPage/lectures">Participar</Link>
-                <button className="secondary-button">Programação</button>
+                <Link className="secondary-button" to="/programpage">Programação</Link>
               </div>
             </div>
           </div>

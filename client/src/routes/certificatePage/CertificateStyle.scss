@@ -74,18 +74,25 @@
                     align-items: center;
                     border-radius: 8px;
                     height: 62px;
+                    
+
+                    .buttons-certificate{
+                        display: flex;
+                        border: none !important;
+                    }
 
                     span {
                         font-size: 18px;
                     }
 
-                    a {
+                    a, button {
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         background-color: #ffffff;
                         padding: 10px;
                         border-radius: 8px;
+                        border: none;
 
                         img {
                             width: 24px;
@@ -97,3 +104,56 @@
         }
     }
 }
+
+/* Adicione isto ao seu CertificateStyle.scss */
+
+.confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  
+    .modal-content {
+      color: #000000;
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 25px;
+      width: 300px;
+      text-align: center;
+  
+      p {
+        margin-bottom: 15px;
+      }
+  
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:first-of-type {
+          background-color: #430073;
+          color: #ffffff;
+        }
+  
+        &:last-of-type {
+          background-color: #ffffff;
+          border: 1px solid #430073;
+          color: #430073;
+        }
+  
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+  

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
@@ -9,32 +9,18 @@ function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-
   const { currentUser, updateUser } = useContext(AuthContext);
-  console.log("currentUser:", currentUser);
-
 
   const handleLogout = async () => {
-    console.log("currentUser:", currentUser);
-
     try {
       await apiRequest.post("/auth/logout");
-      updateUser(null);
-      navigate("/");
+      updateUser(null); // Limpa o estado do usuário
+      localStorage.removeItem("user"); // Limpa o localStorage
+      navigate("/"); // Redireciona para a página inicial
     } catch (err) {
       console.log(err);
     }
   };
-
-  // useEffect(() => {
-  //   console.log("currentUser:", currentUser);
-
-  //   if (currentUser) {
-  //     fetch();
-  //   }
-  // }, [currentUser, fetch]);
-
-  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -53,14 +39,14 @@ function Navbar() {
         <Link to="/" className="logo">
           <img src="/logo-wtisc.png" alt="WTISC Logo" />
         </Link>
-        <Link to="/">Programação</Link>
+        <Link to="/programpage">Programação</Link>
         <Link to="/eventsPage/lectures">Eventos</Link>
-        <Link to="/">Loja</Link>
+        <Link to="/storepage">Loja</Link>
         <Link to="/">Sobre</Link>
       </div>
       <div className="right">
         {currentUser ? (
-          <div className="user" onClick={toggleDropdown}>
+          <div className="user" onClick={() => setDropdownOpen((prev) => !prev)}>
             <img src="/user.png" alt="User" />
             <span>Olá, {currentUser.user ? currentUser.user.name : 'Usuário'}</span>
             {dropdownOpen && (
@@ -86,9 +72,9 @@ function Navbar() {
           />
         </div>
         <div className={open ? "menu active" : "menu"}>
-          <Link to="/">Programação</Link>
+          <Link to="/programpage">Programação</Link>
           <Link to="/eventsPage/lecture">Eventos</Link>
-          <Link to="/">Loja</Link>
+          <Link to="/storepage">Loja</Link>
           <Link to="/">Sobre</Link>
           <Link to="/login">Entrar</Link>
           <Link to="/register">Cadastre-se</Link>

@@ -1,0 +1,51 @@
+.event-card {
+    background-color: #3b3b3b;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+    width: 550px; /* Define a largura fixa do card */
+    height: 220px; /* Define a altura fixa do card */
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites do card */
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 0.5rem;
+      overflow: hidden; /* Garante que o texto não ultrapasse os limites */
+      text-overflow: ellipsis; /* Adiciona reticências quando o texto é muito longo */
+      white-space: nowrap; /* Impede a quebra de linha no texto */
+    }
+
+    .buttonCard {
+      display: flex;
+      justify-content: space-between; /* Alinha os botões */
+      margin-top: auto; /* Empurra os botões para baixo */
+    }
+
+    button {
+      background-color: #a133eb;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #7e25b5;
+      }
+    }
+  }

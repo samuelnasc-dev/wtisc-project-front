@@ -1,0 +1,53 @@
+.enrollment-card {
+    color: #0e0e0e;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    width: 550px; /* Largura fixa */
+    height: 250px; /* Altura fixa */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+  
+    .enrollment-details {
+      p {
+        color: #0e0e0e;
+        margin-bottom: 10px;
+        font-size: 1rem;
+  
+        strong {
+          // Adicione estilos específicos para elementos <strong> se necessário
+        }
+      }
+  
+      button {
+        background-color: #6200ea;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+        transition: background-color 0.1s ease;
+  
+        &:hover {
+          background-color: #5300d6;
+        }
+  
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+  
+        &.enrolled {
+          background-color: #c5c5c5; // Cor para o botão quando o usuário estiver inscrito
+          cursor: not-allowed; // Altera o cursor para indicar que o botão está desabilitado
+        }
+      }
+    }
+  }
+  

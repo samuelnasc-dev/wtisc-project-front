@@ -34,64 +34,11 @@
     justify-content: space-between;
     max-width: 1200px;
     width: 100%;
-    gap: 100px;
-
-    .minicourse-info-card {
-      color: #0e0e0e;
-      background-color: #F0F0F0;
-      padding: 20px;
-      border-radius: 8px;
-      width: 550px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      height: 220px;
-
-      h2 {
-        font-size: 1.4rem;
-        margin-bottom: 15px;
-      }
-
-      .enrollment-details {
-        p {
-          color: #0e0e0e;
-          margin-bottom: 10px;
-          font-size: 1rem;
-
-          strong {
-            color: #000;
-          }
-        }
-
-        .enroll-button {
-          background-color: #6200ea;
-          color: #fff;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          width: 100%;
-          margin-top: 20px;
-          transition: background-color 0.3s ease;
-
-          &:hover {
-            background-color: #5300d6;
-          }
-          
-          &:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-          }
-          
-        }
-        
-        .enroll-button.enrolled {
-          background-color: #C5C5C5; // Cor para o botão quando o usuário estiver inscrito
-          cursor: not-allowed; // Altera o cursor para indicar que o botão está desabilitado
-        }
-      }
-    }
+    gap: 80px; /* Reduzido o espaçamento entre os itens */
 
     .minicourse-body {
-      flex: 1;
+      flex: 2; /* Permite que o corpo do minicurso ocupe mais espaço */
+      max-width: 800px; /* Largura máxima para o corpo do minicurso */
 
       h3 {
         font-size: 1.8rem;
@@ -135,73 +82,22 @@
         }
       }
     }
-  }
 
-  /* Modal */
-
-  .confirmation-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-
-    .modal-content {
-      color: #000000;
-      background-color: #ffffff;
-      border-radius: 8px;
-      padding: 25px;
-      width: 300px;
-      text-align: center;
-
-      p {
-        margin-bottom: 15px;
-      }
-
-      button {
-        margin: 10px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:first-of-type {
-          background-color: #430073;
-          color: #ffffff;
-        }
-
-        &:last-of-type {
-          background-color: #ffffff;
-          border: 1px solid #430073;
-          color: #430073;
-        }
-
-        &:hover {
-          opacity: 0.8;
-        }
-      }
+    .enrollment-card-wrapper {
+      flex: 1; /* Permite que o card de inscrições ocupe o espaço restante */
+      max-width: 400px; /* Largura máxima do card de inscrições */
     }
   }
-}
 
-@include sm {
-  .minicourse-content {
-    flex-direction: column;
-    align-items: center;
+  @include sm {
+    .minicourse-content {
+      flex-direction: column;
+      align-items: center;
 
-    .minicourse-info-card {
-      width: 100%;
-      margin-bottom: 40px;
-    }
-
-    .minicourse-body {
-      width: 100%;
+      .enrollment-card-wrapper {
+        width: 100%; /* Em telas menores, ocupa a largura disponível */
+        max-width: 550px; /* Limita a largura máxima */
+      }
     }
   }
 }
