@@ -29,7 +29,7 @@
 </p>
 
 <p align="center">
-    <img src="..\client\public\img_wtisc.jpg" alt="Image Example" width="400px">
+    <img src="client\public\img_wtisc.jpg" alt="Image Example" width="400px">
 </p>
 
 ## Sobre o WTISC 
