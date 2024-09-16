@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./ConfigStyle.scss";
 import SubMenuPage from "../../components/subMenuPage/SubMenuPage";
+import ToastNotification from "../../components/toastrNotification/ToastrNotification";
 
 const Configurations = () => {
   const [userName, setUserName] = useState({ name: "", surname: "" });
   const [passwords, setPasswords] = useState({ currentPassword: "", newPassword: "" });
-  const [message, setMessage] = useState(""); // Para exibir mensagens de sucesso ou erro
+  const [toast, setToast] = useState({ show: false, message: "", type: "" }); // Estado para controlar o ToastNotification
 
-  // Pega o userId do localStorage
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userId = storedUser?.user?.id;
 
@@ -29,7 +29,11 @@ const Configurations = () => {
       if (userName.surname) payload.surname = userName.surname;
 
       if (Object.keys(payload).length === 0) {
-        setMessage("Por favor, preencha pelo menos um campo.");
+        setToast({
+          show: true,
+          message: "Por favor, preencha pelo menos um campo.",
+          type: "error", // Tipo de notificação para erros
+        });
         return;
       }
 
@@ -40,22 +44,23 @@ const Configurations = () => {
         { withCredentials: true }
       );
 
-      setMessage("Informações atualizadas com sucesso!");
+      setToast({
+        show: true,
+        message: "Informações atualizadas com sucesso!",
+        type: "success", // Notificação de sucesso
+      });
     } catch (error) {
       console.error("Erro ao atualizar informações:", error);
-      setMessage("Ocorreu um erro ao atualizar as informações.");
+      setToast({
+        show: true,
+        message: "Ocorreu um erro ao atualizar as informações.",
+        type: "error",
+      });
     }
   };
 
   const handleAccountDeletion = async () => {
-    const confirmDeletion = window.confirm(
-      "Tem certeza de que deseja excluir sua conta? Esta ação é permanente e não pode ser desfeita."
-    );
-
-    if (!confirmDeletion) return;
-
     try {
-      // Verificar inscrições e certificados antes de excluir a conta
       const subscriptionsResponse = await axios.get(
         "http://localhost:8800/users/subscriptions",
         { withCredentials: true }
@@ -65,35 +70,57 @@ const Configurations = () => {
         { withCredentials: true }
       );
 
-      // Verifica se o usuário possui inscrições ou certificados
       const hasSubscriptions =
         subscriptionsResponse.data.userLectureEnrollment.length > 0 ||
         subscriptionsResponse.data.userMinicourseEnrollment.length > 0;
       const hasCertificates = certificatesResponse.data.length > 0;
 
       if (hasSubscriptions || hasCertificates) {
-        setMessage(
-          "Você possui inscrições ou certificados. Por favor, exclua-os antes de deletar sua conta."
-        );
+        setToast({
+          show: true,
+          message:
+            "Você possui inscrições ou certificados. Por favor, exclua-os antes de deletar sua conta.",
+          type: "warning", // Notificação de aviso
+        });
         return;
       }
 
-      // Se não houver inscrições ou certificados, procede com a exclusão da conta
+      // Definir o tempo de exibição da notificação (por exemplo, 5 segundos)
+      setTimeout(() => {
+        setToast({
+          show: false,
+          message: "",
+          type: "",
+        });
+      }, 5000);
+
       const response = await axios.delete(
         `http://localhost:8800/users/${userId}`,
         { withCredentials: true }
       );
 
       if (response.status === 200 || response.status === 204) {
-        setMessage("Conta excluída com sucesso!");
+        setToast({
+          show: true,
+          message: "Conta excluída com sucesso!",
+          type: "success",
+        });
         localStorage.removeItem("user");
         window.location.href = "/";
       } else {
-        setMessage("Não foi possível excluir a conta. Tente novamente mais tarde.");
+        setToast({
+          show: true,
+          message: "Não foi possível excluir a conta. Tente novamente mais tarde.",
+          type: "error",
+        });
       }
     } catch (error) {
       console.error("Erro ao excluir a conta:", error.response?.data || error.message);
-      setMessage("Ocorreu um erro ao excluir a conta. Tente novamente mais tarde.");
+      setToast({
+        show: true,
+        message: "Ocorreu um erro ao excluir a conta. Tente novamente mais tarde.",
+        type: "error",
+      });
     }
   };
 
@@ -102,12 +129,20 @@ const Configurations = () => {
 
     try {
       if (!passwords.newPassword) {
-        setMessage("Por favor, preencha o campo da nova senha.");
+        setToast({
+          show: true,
+          message: "Por favor, preencha o campo da nova senha.",
+          type: "error",
+        });
         return;
       }
 
       if (passwords.newPassword.length < 6) {
-        setMessage("A nova senha deve ter pelo menos 6 caracteres.");
+        setToast({
+          show: true,
+          message: "A nova senha deve ter pelo menos 6 caracteres.",
+          type: "error",
+        });
         return;
       }
 
@@ -117,11 +152,19 @@ const Configurations = () => {
         { withCredentials: true }
       );
 
-      setMessage("Senha atualizada com sucesso!");
+      setToast({
+        show: true,
+        message: "Senha atualizada com sucesso!",
+        type: "success",
+      });
       setPasswords({ currentPassword: "", newPassword: "" });
     } catch (error) {
       console.error("Erro ao atualizar a senha:", error);
-      setMessage("Ocorreu um erro ao atualizar a senha.");
+      setToast({
+        show: true,
+        message: "Ocorreu um erro ao atualizar a senha.",
+        type: "error",
+      });
     }
   };
 
@@ -131,7 +174,14 @@ const Configurations = () => {
         <div className="content">
           <h1>Configurações</h1>
 
-          {message && <p>{message}</p>} {/* Exibe mensagens de erro ou sucesso */}
+          {/* Notificação de Toast */}
+          {toast.show && (
+            <ToastNotification
+              message={toast.message}
+              type={toast.type}
+              onClose={() => setToast({ show: false, message: "", type: "" })}
+            />
+          )}
 
           <form onSubmit={handleNameSubmit} className="form-section">
             <label>Alterar nome de usuário</label>
