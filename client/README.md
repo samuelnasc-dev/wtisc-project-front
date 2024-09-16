@@ -159,6 +159,8 @@ Aqui você encontra uma lista de algumas rotas do frontend e o que cada uma faz:
 | <kbd>GET /minicourse/:id</kbd> | Página detalhada de um minicurso específico |
 | <kbd>GET /profile</kbd> | Perfil do usuário autenticado |
 | <kbd>GET /profile/update</kbd> | Página para atualizar as informações do perfil do usuário |
+| <kbd> /programacao.png <kbd> | Página destinada para uma imagem da programação do evento
+| <kbd> GET /store <kbf> | Página destinada ao produtos ofertados no evento
 | <kbd>GET /register</kbd> | Página de registro para novos usuários |
 
 ---
