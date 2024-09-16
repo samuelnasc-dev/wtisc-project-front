@@ -17,6 +17,24 @@
         width: 1336px;
         padding-top: 250px;
 
+        @include md {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        @include sm {
+            padding-left: 40px;
+            padding-right: 40px;
+            .travessaoImg{
+                display: none;
+            }
+        }
+
+        @include lg {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
         .menu {
             background-color: #f4f4f4;
             border-radius: 8px;

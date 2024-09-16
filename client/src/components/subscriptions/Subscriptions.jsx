@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./InscricoesStyle.scss";
+import "./SubscriptionStyle.scss";
 import ToastNotification from "../toastrNotification/ToastrNotification";
 import SubMenuPage from "../subMenuPage/SubMenuPage";
 
@@ -130,7 +130,7 @@ const Inscricoes = () => {
               : renderInscricoes(inscricoesMinicursos, "minicourse")}
           </div>
         </div>
-        <div>
+        <div className="travessaoImg">
           <img src="/travessao.png" alt="" />
         </div>
         <SubMenuPage />

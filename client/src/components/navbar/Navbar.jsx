@@ -43,7 +43,7 @@ function Navbar() {
           <Link to="/programpage">Programação</Link>
           <Link to="/eventsPage/lectures">Eventos</Link>
           <Link to="/storepage">Loja</Link>
-          <Link to="/">Sobre</Link>
+          <Link to="/about">Sobre</Link>
         </div>
       </div>
       <div className="right">
@@ -79,7 +79,7 @@ function Navbar() {
           <Link to="/programpage" onClick={() => setOpen(false)}>Programação</Link>
           <Link to="/eventsPage/lectures" onClick={() => setOpen(false)}>Eventos</Link>
           <Link to="/storepage" onClick={() => setOpen(false)}>Loja</Link>
-          <Link to="/" onClick={() => setOpen(false)}>Sobre</Link>
+          <Link to="/about" onClick={() => setOpen(false)}>Sobre</Link>
           {currentUser ? (
             <>
               <Link to="/configurations" onClick={() => setOpen(false)}>Configurações</Link>

@@ -23,7 +23,7 @@ const LectureDetails = ({ title, description, speaker, date, lectureLocation, en
   return (
     <div className="lecture-details-container">
       <div className="lecture-content">
-        <div>
+        <div className='lecture-data'>
           <div className="lecture-header">
             <h1>{title}</h1>
             <p className="lecture-info">
@@ -47,7 +47,7 @@ const LectureDetails = ({ title, description, speaker, date, lectureLocation, en
           </div>
         </div>
 
-        <div>
+        <div className='travessaoImg'>
           <img src="/travessao.png" alt="" />
         </div>
 

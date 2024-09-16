@@ -1,14 +1,18 @@
 @import "../../responsive.scss";
 
 .enrollment-card {
+  position: relative; /* Torna o card o contexto de posicionamento para o botão */
   color: #0e0e0e;
   background-color: #f0f0f0;
   padding: 20px;
+  padding-bottom: 70px; /* Adiciona um padding extra na parte inferior para acomodar o botão */
   border-radius: 8px;
   width: 550px; /* Largura fixa */
-  height: 250px; /* Altura fixa */
+  height: 220px; /* Altura fixa */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   margin: 0 auto; /* Centraliza o card horizontalmente */
+  display: flex;
+  flex-direction: column; /* Garante que os elementos sejam empilhados verticalmente */
 
   h2 {
     font-size: 1.4rem;
@@ -16,6 +20,11 @@
   }
 
   .enrollment-details {
+    flex: 1; /* Faz o conteúdo ocupar o espaço disponível acima do botão */
+    display: flex;
+    flex-direction: column;
+    //justify-content: space-between; /* Garante que o conteúdo fique acima e o botão fixo embaixo */
+    
     p {
       color: #0e0e0e;
       margin-bottom: 10px;
@@ -29,8 +38,10 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      width: 100%;
-      margin-top: 20px;
+      width: calc(100% - 40px); /* Calcula a largura do botão considerando o padding do card */
+      position: absolute; /* Fixa o botão */
+      bottom: 20px; /* Define a distância do botão para a parte inferior do card */
+      left: 20px; /* Alinha o botão com o padding do card */
       transition: background-color 0.1s ease;
 
       &:hover {
@@ -65,6 +76,7 @@
     button {
       padding: 8px 16px;
       font-size: 0.95rem;
+      bottom: 15px; /* Ajusta a posição do botão nas telas grandes */
     }
   }
 
@@ -72,6 +84,7 @@
   @include md {
     width: 400px;
     height: auto; // Deixa a altura flexível para acomodar melhor o conteúdo
+    padding-bottom: 70px; // Adiciona espaço na parte inferior para o botão
 
     h2 {
       font-size: 1.2rem;
@@ -84,16 +97,18 @@
     button {
       padding: 8px 16px;
       font-size: 0.9rem;
+      bottom: 15px; /* Ajusta a posição do botão nas telas médias */
     }
   }
 
   // Responsividade para telas pequenas
   @include sm {
-    width: calc(100% - 40px); // O card vai ocupar quase toda a largura da tela, com 20px de margem de cada lado
+    width: calc(100% - 0px); // O card vai ocupar quase toda a largura da tela
     height: auto;
     padding: 15px;
-    margin: 0 auto; // Centraliza o card em telas menores
-    box-sizing: border-box; // Garante que padding seja incluído no cálculo da largura
+    padding-bottom: 70px; // Garante espaço suficiente para o botão
+    margin: 0 auto;
+    box-sizing: border-box;
 
     h2 {
       font-size: 1.1rem;
@@ -106,6 +121,7 @@
     button {
       padding: 8px 14px;
       font-size: 0.85rem;
+      bottom: 15px; /* Ajusta a posição do botão nas telas pequenas */
     }
   }
 }

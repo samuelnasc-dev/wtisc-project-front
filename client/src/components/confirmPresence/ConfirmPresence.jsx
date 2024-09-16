@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ToastNotification from '../toastrNotification/ToastrNotification';
 import "./ConfirmPresenceStyle.scss";
 
 const ConfirmPresence = () => {
@@ -8,9 +9,11 @@ const ConfirmPresence = () => {
   const navigate = useNavigate();  // Hook para navegação
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [toast, setToast] = useState({ show: false, message: "", type: "" });
 
   const handleConfirm = async () => {
     setLoading(true);
+    setError(null);
     try {
       // Define a URL e o tipo de evento com base no tipo de evento
       const presenceUrl = type === "minicourse" 
@@ -36,9 +39,12 @@ const ConfirmPresence = () => {
         });
 
         if (certificateResponse.status === 201) {
-          alert("Presença confirmada! Certificado gerado com sucesso.");
-          // Redireciona para a página de certificados
-          navigate('/certificates');
+          setToast({ show: true, message: "Presença confirmada. Redirecionando para a página de certificados!", type: "success" });
+          
+          // Redireciona para a página de certificados após um curto delay
+          setTimeout(() => {
+            navigate('/certificates');
+          }, 5000); // Ajuste o tempo conforme necessário
         } else {
           throw new Error('Falha ao gerar o certificado.');
         }
@@ -48,6 +54,7 @@ const ConfirmPresence = () => {
     } catch (err) {
       console.error(err);  // Log detalhado para ajudar a identificar o problema
       setError(err.response?.data?.message || 'Erro ao confirmar presença ou gerar o certificado.');
+      setToast({ show: true, message: "Erro ao confirmar presença ou gerar o certificado.", type: "error" });
     } finally {
       setLoading(false);
     }
@@ -56,15 +63,25 @@ const ConfirmPresence = () => {
   return (
     <div className="confirm-presence-page">
       <div className="confirmation-box">
-        <h1>Confirmar Presença no Evento</h1>
-        <p>Deseja confirmar sua presença neste evento?</p>
+        <h1>CONFIRMAR PRESENÇA</h1>
+        <p>Você precisa confirmar a sua presença para gerar o seu certificado.</p>
         {loading ? (
           <p>Processando...</p>
         ) : (
-          <button onClick={handleConfirm}>Sim, Confirmar Presença</button>
+          <button onClick={handleConfirm}>Confirmar</button>
         )}
         {error && <p className="error">{error}</p>}
       </div>
+
+      {/* Notificação de Toast */}
+      {toast.show && (
+        <ToastNotification
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast({ show: false, message: "", type: "" })}
+        />
+      )}
+
     </div>
   );
 };

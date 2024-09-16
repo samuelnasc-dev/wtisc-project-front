@@ -125,7 +125,7 @@
 
     @include sm {
         padding: 60px 20px; // Padding mais reduzido para telas pequenas
-        margin-top: 20px; // Ajusta a margem superior em telas menores
+        margin-top: 70px; // Ajusta a margem superior em telas menores
 
         .carousel {
             grid-template-columns: 1fr;

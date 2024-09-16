@@ -1,0 +1,184 @@
+@import '../../responsive.scss'; // Para importar o arquivo de mixins
+
+.sobre-wtisc {
+  background-color: #111;
+  color: white;
+  padding: 40px;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .contact {
+      margin-top: 40px;
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 5px 0;
+      }
+    }
+
+    .faq {
+      margin-top: 40px;
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .faq-item {
+        margin-bottom: 15px;
+
+        .faq-question {
+          background-color: #333;
+          color: white;
+          border: none;
+          padding: 10px;
+          width: 100%;
+          text-align: left;
+          font-size: 1rem;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #444;
+          }
+        }
+
+        .faq-answer {
+          display: none;
+          padding: 10px;
+          background-color: #222;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    padding: 20px;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+
+    .contact {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    .faq {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .faq-item {
+        .faq-question {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  @include md {
+    .container {
+      padding: 0 15px;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .description {
+        font-size: 1.1rem;
+      }
+
+      .contact {
+        h2 {
+          font-size: 1.8rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+
+      .faq {
+        h2 {
+          font-size: 1.8rem;
+        }
+
+        .faq-item {
+          .faq-question {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include lg {
+    .container {
+      padding: 0 30px;
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .description {
+        font-size: 1.2rem;
+      }
+
+      .contact {
+        h2 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      .faq {
+        h2 {
+          font-size: 2rem;
+        }
+
+        .faq-item {
+          .faq-question {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+}

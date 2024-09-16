@@ -230,7 +230,7 @@ const Configurations = () => {
             </button>
           </div>
         </div>
-        <div>
+        <div className="travessaoImg">
           <img src="/travessao.png" alt="" />
         </div>
         <SubMenuPage />

@@ -1,10 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import profilePageLoader from "./lib/loaders";
 import HomePage from "./routes/homePage/homePage";
 import { Layout, RequireAuth } from "./routes/layout/layout";
 import Login from "./routes/login/login";
-import ProfilePage from "./routes/profilePage/profilePage";
-import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import Register from "./routes/register/register";
 import EventsPage from "./routes/homePage/eventsPage/eventsPage";
 import LecturePage from "./routes/leacturePage/leacturePage";
@@ -15,6 +12,8 @@ import Configurations from "./routes/configUser/Configurations";
 import ConfirmPresence from "./components/confirmPresence/ConfirmPresence";
 import StorePage from "./routes/storePage/StorePage";
 import ProgramPage from "./routes/programPage/ProgramPage";
+import ScrollToTop from "./components/scrollToTop/ScrollToTop";
+import About from "./routes/about/About";
 
 function App() {
   const router = createBrowserRouter([
@@ -69,27 +68,20 @@ function App() {
         {
           path:"/programpage",
           element: <ProgramPage />
-        }
-      ],
-    },
-    {
-      path: "/",
-      element: <RequireAuth />,
-      children: [
-        {
-          path: "/profile",
-          element: <ProfilePage />,
-          loader: profilePageLoader
         },
         {
-          path: "/profile/update",
-          element: <ProfileUpdatePage />,
+          path:"/about",
+          element: <About />
         }
       ],
-    },
+    }
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router}>
+      <ScrollToTop />
+    </RouterProvider>
+  );
 }
 
 export default App;

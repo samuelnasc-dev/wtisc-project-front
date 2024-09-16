@@ -32,7 +32,7 @@ function Footer() {
             <li><Link to="/programpage">Programação</Link></li>
             <li><Link to="/eventsPage/lectures">Palestras</Link></li>
             <li><Link to="/eventsPage/minicourses">Minicursos</Link></li>
-            <li><Link to="/">Termos e condições</Link></li>
+            <li><Link to="/about">FAQ</Link></li>
           </ul>
         </div>        
 
