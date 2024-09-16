@@ -1,53 +1,111 @@
+@import "../../responsive.scss";
+
 .enrollment-card {
-    color: #0e0e0e;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    width: 550px; /* Largura fixa */
-    height: 250px; /* Altura fixa */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  
-    h2 {
-      font-size: 1.4rem;
-      margin-bottom: 15px;
+  color: #0e0e0e;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  width: 550px; /* Largura fixa */
+  height: 250px; /* Altura fixa */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin: 0 auto; /* Centraliza o card horizontalmente */
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .enrollment-details {
+    p {
+      color: #0e0e0e;
+      margin-bottom: 10px;
+      font-size: 1rem;
     }
-  
-    .enrollment-details {
-      p {
-        color: #0e0e0e;
-        margin-bottom: 10px;
-        font-size: 1rem;
-  
-        strong {
-          // Adicione estilos específicos para elementos <strong> se necessário
-        }
+
+    button {
+      background-color: #6200ea;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+      transition: background-color 0.1s ease;
+
+      &:hover {
+        background-color: #5300d6;
       }
-  
-      button {
-        background-color: #6200ea;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 20px;
-        transition: background-color 0.1s ease;
-  
-        &:hover {
-          background-color: #5300d6;
-        }
-  
-        &:disabled {
-          background-color: #ccc;
-          cursor: not-allowed;
-        }
-  
-        &.enrolled {
-          background-color: #c5c5c5; // Cor para o botão quando o usuário estiver inscrito
-          cursor: not-allowed; // Altera o cursor para indicar que o botão está desabilitado
-        }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      &.enrolled {
+        background-color: #c5c5c5; // Cor para o botão quando o usuário estiver inscrito
+        cursor: not-allowed; // Altera o cursor para indicar que o botão está desabilitado
       }
     }
   }
-  
+
+  // Responsividade para telas grandes
+  @include lg {
+    width: 500px;
+    height: 220px;
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    .enrollment-details p {
+      font-size: 0.95rem;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 0.95rem;
+    }
+  }
+
+  // Responsividade para telas médias
+  @include md {
+    width: 400px;
+    height: auto; // Deixa a altura flexível para acomodar melhor o conteúdo
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    .enrollment-details p {
+      font-size: 0.9rem;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  }
+
+  // Responsividade para telas pequenas
+  @include sm {
+    width: calc(100% - 40px); // O card vai ocupar quase toda a largura da tela, com 20px de margem de cada lado
+    height: auto;
+    padding: 15px;
+    margin: 0 auto; // Centraliza o card em telas menores
+    box-sizing: border-box; // Garante que padding seja incluído no cálculo da largura
+
+    h2 {
+      font-size: 1.1rem;
+    }
+
+    .enrollment-details p {
+      font-size: 0.85rem;
+    }
+
+    button {
+      padding: 8px 14px;
+      font-size: 0.85rem;
+    }
+  }
+}

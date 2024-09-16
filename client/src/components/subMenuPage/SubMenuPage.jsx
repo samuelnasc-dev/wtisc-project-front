@@ -13,6 +13,7 @@ const SubMenuPage = () => {
       await apiRequest.post("/auth/logout");
       updateUser(null);
       localStorage.removeItem("user");
+      localStorage.removeItem("token");
       navigate("/");
     } catch (err) {
       console.log(err);

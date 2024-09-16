@@ -39,10 +39,12 @@ function Navbar() {
         <Link to="/" className="logo">
           <img src="/logo-wtisc.png" alt="WTISC Logo" />
         </Link>
-        <Link to="/programpage">Programação</Link>
-        <Link to="/eventsPage/lectures">Eventos</Link>
-        <Link to="/storepage">Loja</Link>
-        <Link to="/">Sobre</Link>
+        <div className="desktop-menu">
+          <Link to="/programpage">Programação</Link>
+          <Link to="/eventsPage/lectures">Eventos</Link>
+          <Link to="/storepage">Loja</Link>
+          <Link to="/">Sobre</Link>
+        </div>
       </div>
       <div className="right">
         {currentUser ? (
@@ -60,24 +62,37 @@ function Navbar() {
           </div>
         ) : (
           <>
-            <Link to="/login">Entrar</Link>
+            <Link to="/login" className="login-user">Entrar</Link>
             <Link to="/register" className="register">Cadastre-se</Link>
           </>
         )}
-        <div className="menuIcon">
-          <img
-            src="/menu.png"
-            alt="Menu"
-            onClick={() => setOpen((prev) => !prev)}
-          />
+        <div className="menuIcon" onClick={() => setOpen((prev) => !prev)}>
+          <img src="/menu.png" alt="Menu" />
         </div>
         <div className={open ? "menu active" : "menu"}>
-          <Link to="/programpage">Programação</Link>
-          <Link to="/eventsPage/lecture">Eventos</Link>
-          <Link to="/storepage">Loja</Link>
-          <Link to="/">Sobre</Link>
-          <Link to="/login">Entrar</Link>
-          <Link to="/register">Cadastre-se</Link>
+          {currentUser && (
+            <div className="user-info">
+              <img src="/user.png" alt="User" className="user-photo" />
+              <span className="user-name">Olá, {currentUser.user ? currentUser.user.name : 'Usuário'}</span>
+            </div>
+          )}
+          <Link to="/programpage" onClick={() => setOpen(false)}>Programação</Link>
+          <Link to="/eventsPage/lectures" onClick={() => setOpen(false)}>Eventos</Link>
+          <Link to="/storepage" onClick={() => setOpen(false)}>Loja</Link>
+          <Link to="/" onClick={() => setOpen(false)}>Sobre</Link>
+          {currentUser ? (
+            <>
+              <Link to="/configurations" onClick={() => setOpen(false)}>Configurações</Link>
+              <Link to="/inscricoes" onClick={() => setOpen(false)}>Inscrições</Link>
+              <Link to="/certificates" onClick={() => setOpen(false)}>Certificados</Link>
+              <button className="logout-button" onClick={() => { handleLogout(); setOpen(false); }}>Sair</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" onClick={() => setOpen(false)}>Entrar</Link>
+              <Link to="/register" onClick={() => setOpen(false)}>Cadastre-se</Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
