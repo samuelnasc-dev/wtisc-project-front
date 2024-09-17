@@ -71,7 +71,7 @@ Estilização
 
 - **CSS3**: Linguagem de estilo para formatação e layout responsivo de páginas web, suportando animações e design flexível.
 
-- **Bootstrap (SCSS)**: Framework CSS que facilita a criação de layouts responsivos e componentes pré-estilizados, utilizando a sintaxe SCSS para maior personalização.
+- **SCSS**: Framework CSS que facilita a criação de layouts responsivos e componentes pré-estilizados, utilizando a sintaxe SCSS para maior personalização.
 
 ### Módulos e Integrações
 
@@ -103,23 +103,6 @@ cd client
 ```bash
 npm install
 ```
-
-# Ajustar essa parte!!!!!!!!!
-Ajueste as variáveis de ambiente. Use o .env.properties.example como referência para criar seu arquivo de configuração .env com suas credenciais de conexão com o banco de dados e chave secreta JWT
-```yaml
-DATABASE_URL={Sua URL de conexão ao banco de dados}
-JWT_SECRET_KEY={Sua chave secreta JWT}
-```
-Após isso, podemos gerar o client do Prisma a partir do schema definido no arquivo schema.prisma:
-```bash
-npx prisma generate
-```
-Agora para execute o servidor:
-```bash
-npm run dev
-```
-
-# Até aqui!!!!!!!
 
 <h2 id="testando"> 
     Testando a Aplicação no Navegador e Ferramentas de Desenvolvimento
