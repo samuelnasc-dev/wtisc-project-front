@@ -39,7 +39,7 @@ const Configurations = () => {
 
       // Requisição PUT para atualizar o nome/sobrenome
       const response = await axios.put(
-        `https://wtisc1.up.railway.app/users/${userId}`,
+        `http://https://wtisc1.up.railway.app/users/${userId}`,
         payload,
         { withCredentials: true }
       );
@@ -62,11 +62,11 @@ const Configurations = () => {
   const handleAccountDeletion = async () => {
     try {
       const subscriptionsResponse = await axios.get(
-        "https://wtisc1.up.railway.app/users/subscriptions",
+        "http://https://wtisc1.up.railway.app/users/subscriptions",
         { withCredentials: true }
       );
       const certificatesResponse = await axios.get(
-        "https://wtisc1.up.railway.app/users/certificates",
+        "http://https://wtisc1.up.railway.app/users/certificates",
         { withCredentials: true }
       );
 
@@ -95,7 +95,7 @@ const Configurations = () => {
       }, 5000);
 
       const response = await axios.delete(
-        `https://wtisc1.up.railway.app/users/${userId}`,
+        `http://https://wtisc1.up.railway.app/users/${userId}`,
         { withCredentials: true }
       );
 
@@ -147,7 +147,7 @@ const Configurations = () => {
       }
 
       const response = await axios.put(
-        `https://wtisc1.up.railway.app/users/${userId}`,
+        `http://https://wtisc1.up.railway.app/users/${userId}`,
         { password: passwords.newPassword },
         { withCredentials: true }
       );

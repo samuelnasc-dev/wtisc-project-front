@@ -10,7 +10,7 @@ const MinicoursePage = () => {
   useEffect(() => {
     const fetchMinicourseDetails = async () => {
       try {
-        const response = await fetch(`https://wtisc1.up.railway.app/minicourses/${id}`);
+        const response = await fetch(`http://https://wtisc1.up.railway.app/minicourses/${id}`);
         if (!response.ok) {
           throw new Error("Falha ao buscar os detalhes do minicurso");
         }

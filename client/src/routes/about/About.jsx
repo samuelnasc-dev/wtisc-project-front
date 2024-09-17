@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './AboutStyle.scss';
 
 const About = () => {
-  const [activeFaq, setActiveFaq] = useState(null);
-
-  const toggleFaq = (index) => {
-    setActiveFaq(activeFaq === index ? null : index);
-  };
-
   return (
     <section className="sobre-wtisc">
       <div className="container">
         <h1>Sobre o WTISC</h1>
         <p className="subtitle">Conheça a história por trás do grande evento do campus tecnológico!</p>
         <p className="description">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s.
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make a type specimen.
         </p>
         <p className="description">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s.
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make a type specimen.
         </p>
 
         <div className="contact">
@@ -33,42 +29,13 @@ const About = () => {
         <div className="faq">
           <h2>Perguntas Frequentes</h2>
           <div className="faq-item">
-            <button className="faq-question" onClick={() => toggleFaq(0)}>
-              Como eu faço pra ganhar horas complementares?
-            </button>
-            <p className={`faq-answer ${activeFaq === 0 ? 'active' : ''}`}>
+            <button className="faq-question">Como eu faço pra dançar no meio da ufc?</button>
+            <p className="faq-answer">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
               industry's standard dummy text ever since the 1500s.
             </p>
           </div>
-
-          <div className="faq-item">
-            <button className="faq-question" onClick={() => toggleFaq(1)}>
-              Qual a data do evento?
-            </button>
-            <p className={`faq-answer ${activeFaq === 1 ? 'active' : ''}`}>
-              O evento ocorrerá nos dias 25 e 26 de novembro de 2024, no campus de Quixadá.
-            </p>
-          </div>
-
-          <div className="faq-item">
-            <button className="faq-question" onClick={() => toggleFaq(2)}>
-              Como faço para me inscrever nas atividades?
-            </button>
-            <p className={`faq-answer ${activeFaq === 2 ? 'active' : ''}`}>
-              As inscrições podem ser feitas diretamente no site oficial do evento, na aba de inscrições.
-            </p>
-          </div>
-
-          <div className="faq-item">
-            <button className="faq-question" onClick={() => toggleFaq(3)}>
-              Quem pode participar do WTISC?
-            </button>
-            <p className={`faq-answer ${activeFaq === 3 ? 'active' : ''}`}>
-              O evento é aberto para alunos de todos os cursos do campus, bem como para o público externo.
-            </p>
-          </div>
-
+          {/* Adicionar mais itens FAQ */}
         </div>
       </div>
     </section>

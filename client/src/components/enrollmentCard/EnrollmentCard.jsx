@@ -58,7 +58,7 @@ const EnrollmentCard = ({ title, availableSpots, eventId, eventType }) => {
 
     const checkEnrollment = async (userId) => {
       try {
-        const response = await fetch('https://wtisc1.up.railway.app/users/subscriptions/', {
+        const response = await fetch('http://https://wtisc1.up.railway.app/users/subscriptions/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const EnrollmentCard = ({ title, availableSpots, eventId, eventType }) => {
       if (userData) {
         const user = JSON.parse(userData);
         const response = await axios.post(
-          `https://wtisc1.up.railway.app/subscriptions/${eventType === 'lecture' ? 'lectures' : 'minicourses'}/`,
+          `http://https://wtisc1.up.railway.app/subscriptions/${eventType === 'lecture' ? 'lectures' : 'minicourses'}/`,
           { [eventType === 'lecture' ? 'lectureId' : 'minicourseId']: eventId },
           { withCredentials: true, headers: { 'Authorization': `Bearer ${user.id}` } } // Adiciona o ID do usuário ao header
         );

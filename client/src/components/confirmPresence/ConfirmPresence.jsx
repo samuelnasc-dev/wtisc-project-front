@@ -17,8 +17,8 @@ const ConfirmPresence = () => {
     try {
       // Define a URL e o tipo de evento com base no tipo de evento
       const presenceUrl = type === "minicourse" 
-        ? `https://wtisc1.up.railway.app/minicourses/auth/${eventId}` 
-        : `https://wtisc1.up.railway.app/lectures/auth/${eventId}`;
+        ? `http://https://wtisc1.up.railway.app/minicourses/auth/${eventId}` 
+        : `http://https://wtisc1.up.railway.app/lectures/auth/${eventId}`;
 
       const eventType = type.toUpperCase();
 
@@ -31,7 +31,7 @@ const ConfirmPresence = () => {
 
       if (presenceResponse.status === 200) {
         // Se o PUT foi bem-sucedido, envia o POST para gerar o certificado
-        const certificateResponse = await axios.post('https://wtisc1.up.railway.app/certificates/', {
+        const certificateResponse = await axios.post('http://https://wtisc1.up.railway.app/certificates/', {
           eventId: eventId,
           eventType: eventType,
         }, {

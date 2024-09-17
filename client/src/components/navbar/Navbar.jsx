@@ -8,7 +8,6 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const menuRef = useRef(null); // Referência para o menu
   const navigate = useNavigate();
   const { currentUser, updateUser } = useContext(AuthContext);
 
@@ -23,30 +22,16 @@ function Navbar() {
     }
   };
 
-  // Detecta clique fora do menu e fecha o dropdown e o menu
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
-      }
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  // Função para alternar o menu
-  const toggleMenu = () => {
-    setOpen((prev) => !prev);
-  };
-
-  // Função para fechar o menu
-  const closeMenu = () => {
-    setOpen(false);
-  };
 
   return (
     <nav className="navbar">
@@ -68,10 +53,10 @@ function Navbar() {
             <span>Olá, {currentUser.user ? currentUser.user.name : 'Usuário'}</span>
             {dropdownOpen && (
               <div className="dropdown" ref={dropdownRef}>
-                <Link to="/configurations" onClick={() => setDropdownOpen(false)}>Configurações</Link>
-                <Link to="/inscricoes" onClick={() => setDropdownOpen(false)}>Inscrições</Link>
-                <Link to="/certificates" onClick={() => setDropdownOpen(false)}>Certificados</Link>
-                <button className="logout-button" onClick={() => { handleLogout(); setDropdownOpen(false); }}>Sair</button>
+                <Link to="/configurations">Configurações</Link>
+                <Link to="/inscricoes">Inscrições</Link>
+                <Link to="/certificates">Certificados</Link>
+                <button className="logout-button" onClick={handleLogout}>Sair</button>
               </div>
             )}
           </div>
@@ -81,31 +66,31 @@ function Navbar() {
             <Link to="/register" className="register">Cadastre-se</Link>
           </>
         )}
-        <div className="menuIcon" onClick={toggleMenu}>
+        <div className="menuIcon" onClick={() => setOpen((prev) => !prev)}>
           <img src="/menu.png" alt="Menu" />
         </div>
-        <div ref={menuRef} className={open ? "menu active" : "menu"}>
+        <div className={open ? "menu active" : "menu"}>
           {currentUser && (
             <div className="user-info">
               <img src="/user.png" alt="User" className="user-photo" />
               <span className="user-name">Olá, {currentUser.user ? currentUser.user.name : 'Usuário'}</span>
             </div>
           )}
-          <Link to="/programpage" onClick={closeMenu}>Programação</Link>
-          <Link to="/eventsPage/lectures" onClick={closeMenu}>Eventos</Link>
-          <Link to="/storepage" onClick={closeMenu}>Loja</Link>
-          <Link to="/about" onClick={closeMenu}>Sobre</Link>
+          <Link to="/programpage" onClick={() => setOpen(false)}>Programação</Link>
+          <Link to="/eventsPage/lectures" onClick={() => setOpen(false)}>Eventos</Link>
+          <Link to="/storepage" onClick={() => setOpen(false)}>Loja</Link>
+          <Link to="/about" onClick={() => setOpen(false)}>Sobre</Link>
           {currentUser ? (
             <>
-              <Link to="/configurations" onClick={closeMenu}>Configurações</Link>
-              <Link to="/inscricoes" onClick={closeMenu}>Inscrições</Link>
-              <Link to="/certificates" onClick={closeMenu}>Certificados</Link>
-              <button className="logout-button" onClick={() => { handleLogout(); closeMenu(); }}>Sair</button>
+              <Link to="/configurations" onClick={() => setOpen(false)}>Configurações</Link>
+              <Link to="/inscricoes" onClick={() => setOpen(false)}>Inscrições</Link>
+              <Link to="/certificates" onClick={() => setOpen(false)}>Certificados</Link>
+              <button className="logout-button" onClick={() => { handleLogout(); setOpen(false); }}>Sair</button>
             </>
           ) : (
             <>
-              <Link to="/login" onClick={closeMenu}>Entrar</Link>
-              <Link to="/register" onClick={closeMenu}>Cadastre-se</Link>
+              <Link to="/login" onClick={() => setOpen(false)}>Entrar</Link>
+              <Link to="/register" onClick={() => setOpen(false)}>Cadastre-se</Link>
             </>
           )}
         </div>

@@ -11,9 +11,9 @@ const fetchEventName = async (eventId, eventType) => {
     let url = '';
 
     if (eventType === 'MINICOURSE') {
-      url = `https://wtisc1.up.railway.app/minicourses/${eventId}`;
+      url = `http://https://wtisc1.up.railway.app/minicourses/${eventId}`;
     } else if (eventType === 'LECTURE') {
-      url = `https://wtisc1.up.railway.app/lectures/${eventId}`;
+      url = `http://https://wtisc1.up.railway.app/lectures/${eventId}`;
     } else {
       throw new Error('Tipo de evento desconhecido');
     }
@@ -37,7 +37,7 @@ const Certificates = () => {
   useEffect(() => {
     const fetchCertificates = async () => {
       try {
-        const response = await axios.get('https://wtisc1.up.railway.app/users/certificates/', { withCredentials: true });
+        const response = await axios.get('http://https://wtisc1.up.railway.app/users/certificates/', { withCredentials: true });
         const certificatesData = response.data || [];
         setCertificates(certificatesData);
 
@@ -64,7 +64,7 @@ const Certificates = () => {
 
   const handleRemoveCertificate = async (certificateId) => {
     try {
-      await axios.delete(`https://wtisc1.up.railway.app/certificates/${certificateId}`, { withCredentials: true });
+      await axios.delete(`http://https://wtisc1.up.railway.app/certificates/${certificateId}`, { withCredentials: true });
       setToast({ show: true, message: "Certificado excluído!", type: "success" });
 
       setCertificates((prevCertificates) =>
@@ -105,7 +105,7 @@ const Certificates = () => {
                 <div key={cert.certificateId} className="certificate-card">
                   <span>{eventTitles[cert.eventId] || 'Título não disponível'}</span>
                   <div className="buttons-certificate">
-                    <a href={`https://wtisc1.up.railway.app/certificates/issue/${cert.certificateId}`} target="_blank" rel="noopener noreferrer">
+                    <a href={`http://https://wtisc1.up.railway.app/certificates/issue/${cert.certificateId}`} target="_blank" rel="noopener noreferrer">
                       <img src="Vector.png" alt="Visualizar" />
                     </a>
                     <button onClick={() => openConfirmation(cert.certificateId)}>
