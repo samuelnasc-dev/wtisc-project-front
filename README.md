@@ -44,6 +44,9 @@ Nas palestras, os profissionais contam sua experiência profissional e temas aca
 
 Nos minicursos, são apresentados aos alunos/participantes várias técnicas e ferramentas utilizadas em diversas áreas de atuação no mercado e na academia.
 
+## Protótipo
+[Figma](https://www.figma.com/design/xf2xmjGqTZf9IlhOY9NNQP/WTISC-2024?node-id=0-1&node-type=canvas&t=b0gJqT6BCPREl30S-0)
+
 ## Status do Projeto
 
 🚧 Em desenvolvimento 🚧
