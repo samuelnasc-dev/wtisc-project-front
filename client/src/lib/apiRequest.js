@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 const apiRequest = axios.create({
-  baseURL: "http://localhost:8800",
+  baseURL: "https://wtisc1.up.railway.app/",
   withCredentials: true,
   
 });

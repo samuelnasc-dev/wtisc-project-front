@@ -10,7 +10,7 @@ const LecturePage = () => {
   useEffect(() => {
     const fetchLectureDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:8800/lectures/${id}`);
+        const response = await fetch(`https://wtisc1.up.railway.app/lectures/${id}`);
         const data = await response.json();
         setLecture(data);
         setLoading(false);

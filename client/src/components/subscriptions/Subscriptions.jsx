@@ -16,7 +16,7 @@ const Inscricoes = () => {
   useEffect(() => {
     const fetchInscricoes = async () => {
       try {
-        const response = await axios.get("http://localhost:8800/users/subscriptions", {
+        const response = await axios.get("https://wtisc1.up.railway.app/users/subscriptions", {
           withCredentials: true, // Enviar cookies de autenticação
         });
 
@@ -32,7 +32,7 @@ const Inscricoes = () => {
 
   const handleRemoveMinicurso = async (enrollmentId) => {
     try {
-      await axios.delete(`http://localhost:8800/subscriptions/minicourses/${enrollmentId}`, {
+      await axios.delete(`https://wtisc1.up.railway.app/subscriptions/minicourses/${enrollmentId}`, {
         withCredentials: true, // Enviar cookies de autenticação
       });
       setToast({ show: true, message: "Inscrição excluída!", type: "success" });
@@ -47,7 +47,7 @@ const Inscricoes = () => {
 
   const handleRemovePalestra = async (enrollmentId) => {
     try {
-      await axios.delete(`http://localhost:8800/subscriptions/lectures/${enrollmentId}`, {
+      await axios.delete(`https://wtisc1.up.railway.app/subscriptions/lectures/${enrollmentId}`, {
         withCredentials: true, // Enviar cookies de autenticação
       });
       setToast({ show: true, message: "Inscrição excluída!", type: "success" });

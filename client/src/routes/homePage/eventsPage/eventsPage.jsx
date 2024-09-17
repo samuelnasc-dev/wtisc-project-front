@@ -14,8 +14,8 @@ function EventsPage() {
     const fetchData = async () => {
       try {
         const endpoint = activeTab === "palestras"
-          ? 'http://localhost:8800/lectures'
-          : 'http://localhost:8800/minicourses';
+          ? 'https://wtisc1.up.railway.app/lectures'
+          : 'https://wtisc1.up.railway.app/minicourses';
 
         const response = await fetch(endpoint);
         const result = await response.json();
