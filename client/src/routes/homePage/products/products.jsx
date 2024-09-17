@@ -13,7 +13,7 @@ function Products() {
               Explore os nossos produtos disponíveis e aproveite os benefícios.
             </p>
             <div className="button-container">
-              <a href="/storepage" className="btn">Ver mais</a>
+              <a href="/about" className="btn">Ver mais</a>
             </div>
           </div>
         </div>

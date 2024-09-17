@@ -1,9 +1,16 @@
+@import "../../responsive.scss";
+
 .menu {
     background-color: #f4f4f4;
     border-radius: 8px;
     padding: 20px;
     width: 220px;
     height: fit-content;
+
+    @include sm {
+      display: none;
+    }
+    
   
     ul {
       list-style: none;
@@ -42,4 +49,4 @@
       }
     }
   }
-  
+

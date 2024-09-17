@@ -1,25 +1,59 @@
 @import "../../responsive.scss"; // Para adicionar responsividade, se necessário
 
 .store {
-  padding: 50px;
+  padding: 150px 0;
   background-color: #000;
   color: #fff;
   text-align: center;
+  height: 100%;
+
+  @include sm {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 
   h1 {
     font-size: 48px;
     margin-bottom: 20px;
+
+    @include md {
+      font-size: 36px;
+    }
+
+    @include sm {
+      font-size: 28px;
+    }
   }
 
   .store-subtitle {
     font-size: 20px;
     margin-bottom: 40px;
+
+    @include md {
+      font-size: 18px;
+    }
+
+    @include sm {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
   }
 
   .product-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     gap: 40px;
+    flex-wrap: wrap; // Para permitir quebra de linha em telas menores
+
+    @include md {
+      gap: 30px;
+    }
+
+    @include sm {
+      flex-direction: column; // Em telas pequenas, os cards ficam em uma coluna
+      gap: 20px;
+    }
 
     .product-card {
       display: flex;
@@ -28,10 +62,37 @@
       padding: 20px;
       align-items: center;
       justify-content: space-between;
+      width: 620px;
+
+      @include lg {
+        width: 400px;
+      }
+
+      @include md {
+        width: 350px;
+        flex-direction: column; // Em telas médias, organiza em coluna
+        padding: 15px;
+      }
+
+      @include sm {
+        width: 100%; // Em telas pequenas, o card ocupa a largura total
+        flex-direction: column;
+        padding: 10px;
+      }
 
       img {
-        max-width: 150px;
+        max-width: 300px;
         border-radius: 5px;
+
+        @include md {
+          max-width: 320px; // Aumenta o tamanho da imagem em telas médias
+        }
+
+        @include sm {
+          max-width: 280px; // Aumenta o tamanho da imagem em telas pequenas
+          margin-bottom: 10px; // Em telas pequenas, adiciona espaçamento entre imagem e texto
+          padding: 10px;
+        }
       }
 
       .product-info {
@@ -39,21 +100,50 @@
         padding: 0 20px;
         text-align: left;
 
+        @include md {
+          padding: 0 10px;
+        }
+
+        @include sm {
+          padding: 0;
+          text-align: center; // Centraliza o texto em telas menores
+        }
+
         h3 {
           font-size: 16px;
           color: #fff;
+
+          @include md {
+            font-size: 14px; // Diminui o tamanho do nome nas telas médias
+          }
+
+          @include sm {
+            font-size: 12px; // Diminui o tamanho do nome nas telas pequenas
+          }
         }
 
         h2 {
           font-size: 24px;
           color: #fff;
           margin: 10px 0;
+
+          @include md {
+            font-size: 20px; // Diminui o tamanho do título nas telas médias
+          }
+
+          @include sm {
+            font-size: 18px; // Diminui o tamanho do título nas telas pequenas
+          }
         }
 
         p {
           font-size: 22px;
           font-weight: bold;
           margin: 5px 0;
+
+          @include sm {
+            font-size: 18px;
+          }
         }
 
         span {
@@ -61,6 +151,11 @@
           font-size: 12px;
           margin-bottom: 20px;
           color: #ccc;
+
+          @include sm {
+            font-size: 10px;
+            margin-bottom: 15px;
+          }
         }
 
         button {
@@ -74,6 +169,11 @@
 
           &:hover {
             background-color: #7400c9;
+          }
+
+          @include sm {
+            padding: 8px 16px;
+            font-size: 14px;
           }
         }
       }

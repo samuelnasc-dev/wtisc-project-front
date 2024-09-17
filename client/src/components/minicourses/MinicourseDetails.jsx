@@ -26,7 +26,7 @@ const MinicourseDetails = ({ title, description, instructor, date, minicourseLoc
   return (
     <div className="minicourse-details-container">
       <div className="minicourse-content">
-        <div>
+        <div className='minicourse-data'>
           <div className="minicourse-header">
             <h1>{title}</h1>
             <p className="minicourse-info">
@@ -50,7 +50,7 @@ const MinicourseDetails = ({ title, description, instructor, date, minicourseLoc
           </div>
         </div>
 
-        <div>
+        <div className='travessaoImg'>
           <img src="/travessao.png" alt="" />
         </div>
 

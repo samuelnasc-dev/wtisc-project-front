@@ -7,13 +7,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 950px;
+  height: auto;
   padding-top: 200px;
+  padding: 200px;
+
+
+  @include sm {
+    padding: 35px;
+  }
 
   .lecture-header {
     text-align: left;
     margin-bottom: 40px;
-    width: 750px;
+    width: 100%;
+    max-width: 750px;
 
     h1 {
       font-size: 2.5rem;
@@ -23,6 +30,7 @@
     .lecture-info {
       font-size: 1.1rem;
       color: #ccc;
+
       span {
         margin: 0 8px;
       }
@@ -31,14 +39,14 @@
 
   .lecture-content {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    max-width: 1200px;
     width: 100%;
-    gap: 80px; /* Espaçamento ajustado para combinar com minicourse */
+    gap: 60px;
 
     .lecture-body {
-      flex: 2; /* Ocupa mais espaço, como no minicourse */
-      max-width: 800px; /* Largura máxima ajustada */
+      flex: 2;
+      max-width: 800px;
 
       h3 {
         font-size: 1.8rem;
@@ -83,12 +91,21 @@
       }
     }
 
+    .lecture-image {
+      max-width: 400px;
+      margin-right: 20px;
+      @include sm {
+        display: none;
+      }
+    }
+
     .enrollment-card-wrapper {
-      flex: 1; /* Ocupa o espaço restante, como no minicourse */
-      max-width: 400px; /* Largura máxima ajustada */
+      flex: 1;
+      max-width: 400px;
+      align-self: flex-start;
 
       .enrollment-card {
-        background-color: #333; /* Adiciona um fundo para o card de inscrição */
+        background-color: #333;
         border-radius: 8px;
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -128,7 +145,6 @@
     }
   }
 
-  /* Modal */
   .confirmation-modal {
     position: fixed;
     top: 0;
@@ -179,15 +195,90 @@
     }
   }
 
+  // Adaptações para telas maiores
+  @include lg {
+    .lecture-header {
+      width: 90%;
+    }
+
+    .lecture-content {
+      gap: 60px;
+    }
+  }
+
+  // Adaptações para telas médias
+  @include md {
+    padding-top: 150px;
+
+    .lecture-header {
+      width: 80%;
+    }
+
+    .travessaoImg {
+      display: none;
+    }
+
+    .lecture-content {
+      flex-direction: row;
+      gap: 40px;
+      align-items: flex-start;
+
+      .lecture-body, .enrollment-card-wrapper {
+        max-width: 90%;
+      }
+    }
+  }
+
+  // Adaptações para telas pequenas (mobile)
   @include sm {
+    padding-top: 100px;
+
+    .lecture-header {
+      width: 100%;
+      text-align: center;
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
     .lecture-content {
       flex-direction: column;
       align-items: center;
+      gap: 30px;
+
+      .lecture-body {
+        max-width: 100%;
+      }
 
       .enrollment-card-wrapper {
-        width: 100%; /* Ocupa a largura disponível em telas menores */
-        max-width: 550px; /* Limita a largura máxima */
+        width: 100%;
+        max-width: 100%;
+      }
+
+      // Ajustando margens e tamanhos para melhor visualização em dispositivos móveis
+      .lecture-description {
+        margin-bottom: 20px;
+      }
+
+      .lecture-speaker-card {
+        padding: 15px;
+        .speaker-info {
+          flex-direction: column;
+          align-items: center;
+          .speaker-photo {
+            width: 80px;
+            height: 80px;
+          }
+        }
       }
     }
   }
 }
+
+.lecture-data {
+  width: 1000px;
+  max-width: 100%; // Para garantir que em telas menores ela não ultrapasse o tamanho disponível
+  margin: 0 auto; // Para centralizar a div no container
+}
+

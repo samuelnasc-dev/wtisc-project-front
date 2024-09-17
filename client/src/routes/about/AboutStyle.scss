@@ -1,0 +1,201 @@
+@import '../../responsive.scss'; // Para importar o arquivo de mixins
+
+.sobre-wtisc {
+  background-color: #111;
+  color: white;
+  padding: 50px;
+  padding-top: 130px;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include sm {
+      padding-top: 100px !important;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .contact {
+      margin-top: 40px;
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 5px 0;
+      }
+    }
+
+    .faq {
+      margin-top: 40px;
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .faq-item {
+        margin-bottom: 15px;
+
+        .faq-question {
+          background-color: #ebe8e8;
+          color: #000000;
+          border: none;
+          padding: 10px;
+          width: 100%;
+          text-align: left;
+          font-size: 1.3rem;
+          cursor: pointer;
+          border-radius: 10px 10px 0 0;
+
+          &:hover {
+            background-color: #6f0d9c;
+            color: #ebe8e8;
+          }
+        }
+
+        .faq-answer {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.5s ease, opacity 0.5s ease;
+          opacity: 0;
+          padding: 0 10px;
+          background-color: #ebe8e8;
+          color: #000000;
+          font-size: 1.1rem;
+          border-radius: 0 0 10px 10px;
+
+          &.active {
+            max-height: 200px; // Define um valor maior que o esperado para a altura máxima
+            opacity: 1;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  @include sm {
+    padding: 20px;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+
+    .contact {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    .faq {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .faq-item {
+        .faq-question {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  @include md {
+    .container {
+      padding: 0 15px;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .description {
+        font-size: 1.1rem;
+      }
+
+      .contact {
+        h2 {
+          font-size: 1.8rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+
+      .faq {
+        h2 {
+          font-size: 1.8rem;
+        }
+
+        .faq-item {
+          .faq-question {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include lg {
+    .container {
+      padding: 0 30px;
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .description {
+        font-size: 1.2rem;
+      }
+
+      .contact {
+        h2 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      .faq {
+        h2 {
+          font-size: 2rem;
+        }
+
+        .faq-item {
+          .faq-question {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+}

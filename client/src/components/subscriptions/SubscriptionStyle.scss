@@ -1,0 +1,255 @@
+@import "../../responsive.scss";
+
+.inscricoes-page {
+  background-color: #0e0e0e;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    max-width: 100%;
+    width: 1336px;
+    padding-top: 200px;
+    flex-wrap: wrap; // Permite que o conteúdo se ajuste e mova para a próxima linha em telas menores
+
+    .menu {
+      background-color: #f4f4f4;
+      border-radius: 8px;
+      padding: 20px;
+      width: 220px;
+      height: fit-content;
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 10px;
+
+          a {
+            color: #333;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+            transition: background-color 0.3s ease;
+
+            &:hover,
+            &.active {
+              background-color: #e0e0e0;
+              border-radius: 4px;
+            }
+
+            &.logout {
+              color: #ff3d3d;
+            }
+          }
+        }
+      }
+    }
+
+    .content {
+      flex: 1;
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .tabs {
+        display: flex;
+        margin-bottom: 20px;
+
+        button {
+          color: #a1a0a0;
+          font-size: 17px;
+          background: none;
+          border: none;
+          padding: 10px 20px;
+          margin-right: 10px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &.active {
+            color: #e0e0e0;
+          }
+        }
+      }
+
+      .inscricoes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .inscricao-card {
+          background-color: #ffffff;
+          color: #000000;
+          padding: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: 8px;
+          height: 62px;
+
+          span {
+            font-size: 18px;
+          }
+
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+
+            img {
+              width: 20px;
+              height: 24px;
+            }
+          }
+        }
+      }
+    }
+    
+    .sub-menu-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .travessaoImg {
+      display: block;
+    }
+  }
+
+  /* Modal de confirmação */
+  .confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal-content {
+      color: #000000;
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 25px;
+      width: 300px;
+      text-align: center;
+
+      p {
+        margin-bottom: 15px;
+      }
+
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:first-of-type {
+          background-color: #430073;
+          color: #ffffff;
+        }
+
+        &:last-of-type {
+          background-color: #ffffff;
+          border: 1px solid #430073;
+          color: #430073;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  /* Responsividade */
+  @include lg {
+    .container {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 40px;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .menu {
+      width: 220px;
+      max-width: 300px;
+    }
+
+    .content {
+      width: calc(100% - 240px); // Ajuste para compensar a largura do menu
+    }
+
+    .sub-menu-page {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    .travessaoImg {
+      display: block;
+    }
+  }
+
+  @include md {
+
+    .container {
+      padding-top: 150px; // Ajuste o padding para telas menores
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    .menu {
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .content {
+      width: 100%;
+    }
+
+  }
+
+  @include sm {
+    .travessaoImg {
+      display: none !important;
+    }
+
+    .container {
+      //padding-top: 150px;
+      flex-direction: row;
+    }
+
+    .menu {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .content {
+      width: 100%;
+    }
+
+    .confirmation-modal .modal-content {
+      width: 80%;
+    }
+  }
+}

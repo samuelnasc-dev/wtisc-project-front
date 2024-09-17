@@ -17,12 +17,34 @@
     width: 1336px;
     padding-top: 200px;
 
+    @include md {
+      flex-direction: row;
+      //align-items: center;
+      height: auto;
+      padding-left: 40px;
+      padding-right: 40px;
+      gap: 40px;
+    }
+
+    @include sm {
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
     .menu {
       background-color: #f4f4f4;
       border-radius: 8px;
       padding: 20px;
       width: 220px;
       height: fit-content;
+
+      @include sm {
+        width: 100%;
+        margin-bottom: 20px;
+      }
 
       ul {
         list-style: none;
@@ -53,12 +75,25 @@
     }
 
     .content {
-      //flex: 1;
-
       width: 550px;
+
+      @include md {
+        width: 100%;
+      }
+
+      @include sm {
+        width: 100%;
+        padding-top: 100px;
+        height: 100vh;
+      }
+
       h1 {
         font-size: 24px;
         margin-bottom: 20px;
+
+        @include sm {
+          font-size: 20px;
+        }
       }
 
       .form-section {
@@ -74,6 +109,14 @@
           display: flex;
           gap: 20px;
           margin-bottom: 10px;
+
+          @include md {
+            flex-direction: row; // Aplica 'row' para telas médias
+          }
+        
+          @include sm {
+            flex-direction: column; // Aplica 'column' para telas pequenas
+          }
 
           input {
             padding: 10px;
@@ -126,8 +169,12 @@
 }
 
 @include sm {
+  .travessaoImg {
+    display: none;
+  }
+
   .config-page .container {
-    flex-direction: column;
+    //flex-direction: column;
     align-items: center;
 
     .menu {
@@ -136,6 +183,60 @@
 
     .content {
       width: 100%;
+    }
+  }
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .modal-content {
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    width: 300px;
+    text-align: center;
+
+    @include sm {
+      width: 90%;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:first-of-type {
+        background-color: #430073;
+        color: #ffffff;
+      }
+
+      &:last-of-type {
+        background-color: #ffffff;
+        border: 1px solid #430073;
+        color: #430073;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }

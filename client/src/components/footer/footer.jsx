@@ -32,7 +32,7 @@ function Footer() {
             <li><Link to="/programpage">Programação</Link></li>
             <li><Link to="/eventsPage/lectures">Palestras</Link></li>
             <li><Link to="/eventsPage/minicourses">Minicursos</Link></li>
-            <li><Link to="/">Termos e condições</Link></li>
+            <li><Link to="/about">FAQ</Link></li>
           </ul>
         </div>        
 
@@ -40,9 +40,9 @@ function Footer() {
           <h2 className="section-title">Siga-nos</h2>
           <div className="social-links">
             <ol>
-              <li><a href="https://www.instagram.com/petsi.ufc/"><img src="/instagram.png"/></a></li>
+              <li><a href="https://www.instagram.com/petsi.ufc/"><img src="/instagram2.png"/></a></li>
               <li><a href="https://www.youtube.com/@PETSIUFC"><img src="/youtube.png"/></a></li>
-              <li><a href="https://www.linkedin.com/company/pet-si-ufc-quixada/"><img src="/facebook.png"/></a></li>
+              <li><a href="https://www.linkedin.com/company/pet-si-ufc-quixada/"><img src="/linkedin2.png"/></a></li>
             </ol>
           </div>
         </div>

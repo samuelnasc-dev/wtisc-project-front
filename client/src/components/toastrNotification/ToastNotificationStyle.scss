@@ -9,7 +9,7 @@ $white-color: white;
   top: 20px;
   right: 20px;
   min-width: 250px;
-  padding: 15px;
+  padding: 25px;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -48,12 +48,23 @@ $white-color: white;
     right: 10px;
     cursor: pointer;
   }
-}
 
-.toast-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  .progress-bar {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2); // Fundo da barra
+    border-radius: 5px;
+    overflow: hidden;
+
+    .progress {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7); // Cor da barra de progresso
+      animation: progressAnimation linear;
+      transform-origin: right; // Origem da animação é a esquerda
+    }
+  }
 }
 
 @keyframes fadeIn {
@@ -75,5 +86,14 @@ $white-color: white;
   100% {
     opacity: 0;
     transform: translateY(-20px);
+  }
+}
+
+@keyframes progressAnimation {
+  0% {
+    transform: scaleX(1); // Começa com a barra completa
+  }
+  100% {
+    transform: scaleX(0); // Recolhe a barra da esquerda para a direita
   }
 }
