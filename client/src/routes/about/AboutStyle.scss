@@ -3,12 +3,16 @@
 .sobre-wtisc {
   background-color: #111;
   color: white;
-  padding: 40px;
+  padding: 50px;
+  padding-top: 130px;
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+
+    @include sm {
+      padding-top: 100px !important;
+    }
 
     h1 {
       font-size: 3rem;
@@ -44,7 +48,7 @@
       margin-top: 40px;
 
       h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-bottom: 20px;
       }
 
@@ -52,25 +56,38 @@
         margin-bottom: 15px;
 
         .faq-question {
-          background-color: #333;
-          color: white;
+          background-color: #ebe8e8;
+          color: #000000;
           border: none;
           padding: 10px;
           width: 100%;
           text-align: left;
-          font-size: 1rem;
+          font-size: 1.3rem;
           cursor: pointer;
+          border-radius: 10px 10px 0 0;
 
           &:hover {
-            background-color: #444;
+            background-color: #6f0d9c;
+            color: #ebe8e8;
           }
         }
 
         .faq-answer {
-          display: none;
-          padding: 10px;
-          background-color: #222;
-          font-size: 0.9rem;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.5s ease, opacity 0.5s ease;
+          opacity: 0;
+          padding: 0 10px;
+          background-color: #ebe8e8;
+          color: #000000;
+          font-size: 1.1rem;
+          border-radius: 0 0 10px 10px;
+
+          &.active {
+            max-height: 200px; // Define um valor maior que o esperado para a altura máxima
+            opacity: 1;
+            padding: 10px;
+          }
         }
       }
     }
